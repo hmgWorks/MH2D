@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 #include "cGAME_OBJECT.h"
-
+#include <memory>
 struct sMAP_DATA;
 
 class cGRID
@@ -19,7 +19,11 @@ public:
 	
 	void initGrid(const sMAP_DATA& data);
 	
+	void setGrid(const sMAP_DATA& data);
+	
 	RECT getGridLimits();
+	int getWidth(){ return width_; }
+	int getHeight(){ return height_; }
 	int getCountX(){ return count_x_; }
 	int getCountY(){ return count_y_; }
 	char** getGridMap(){ return grid_; }
@@ -39,6 +43,12 @@ public:
 
 	void insertMapObj();
 	void loadMapData();
+
+private:
+	void clearMapTable();
+	void createMapTable();
+	void loadFileData();
+
 private:
 	int pos_x_, pos_y_;
 	int width_, height_;
@@ -46,8 +56,23 @@ private:
 	RECT limits_grid_;
 	char** grid_;
 	char map_key_;
+
+public:
 	std::string file_name_;
-	std::string old_file_name_;
+	std::string potal_left_file_name_;
+	std::string potal_top_file_name_;
+	std::string potal_right_file_name_;
+	std::string potal_bottom_file_name_;
+	std::string floor_img_file_;
+	std::string background_img_file_;
+	std::string background_img2_file_;
 	std::list<cGAME_OBJECT*>** tilemap_;
 		
+	std::vector<char> data_row_;
+	std::vector<std::vector<char>> data_table_;
+		
+	//std::list<cGAME_OBJECT*>** obj_table_;
+	
+	std::vector < std::list<std::shared_ptr<cGAME_OBJECT>>>obj_row_;
+	std::vector<std::vector < std::list<std::shared_ptr<cGAME_OBJECT>>>> obj_table_;
 };

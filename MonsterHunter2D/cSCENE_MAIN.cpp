@@ -20,8 +20,8 @@ cSCENE_MAIN::~cSCENE_MAIN()
 
 void cSCENE_MAIN::enter()
 {		
-	grid_->initGrid(cMAIN_GAME::getInstance()->resource_->map_data_[eMAP_DATA::MAP1_1]);
-
+	//grid_->initGrid(cMAIN_GAME::getInstance()->resource_->map_data_[eMAP_DATA::MAP1_1]);
+	grid_->setGrid(cMAIN_GAME::getInstance()->resource_->map_data1_[eMAP_DATA::world_start]);
 	/*
 		플래이어의 위치와 한계의 설정은 그리드에 종속 되어야 함.
 		그리드(맵의)변경시 플래이어의 우치와 한계가 셋팅 돼어야 함.

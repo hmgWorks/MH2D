@@ -1,0 +1,9 @@
+30 20 60 20
+world_start.txt
+world_l.txt
+none
+world_r.txt
+world_b.txt
+none
+none
+none

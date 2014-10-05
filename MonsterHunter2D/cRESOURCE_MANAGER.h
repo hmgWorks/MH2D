@@ -19,12 +19,16 @@ struct sMAP_DATA
 	std::string background_img;
 	std::string background_img2;
 };
+//enum eMAP_DATA
+//{
+//	MAP1_1, MAP1_2, MAP1_3,
+//	MAP2_1, MAP2_2, MAP2_3
+//};
 enum eMAP_DATA
 {
-	MAP1_1, MAP1_2, MAP1_3,
-	MAP2_1, MAP2_2, MAP2_3
+	world_start, world_left, world_top,
+	world_right, world_bottom
 };
-
 class cRESOURCE_MANAGER
 {
 public:
@@ -44,7 +48,11 @@ public:
 	void loadImage();
 //private:
 	std::vector<sMAP_DATA> map_data_;
+
+	void loadMap();
+	std::vector<sMAP_DATA> map_data1_;
 private:
 	HINSTANCE hInst_;
+	std::vector<std::string>map_file_names_;
 };
 
