@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{25B8EE10-3B84-4BA7-8CA3-43CC8875FCF2}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MonsterHunter2D</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cCAMERA.h" />
+    <ClInclude Include="cGAME_OBJECT.h" />
+    <ClInclude Include="cGRID.h" />
+    <ClInclude Include="cINPUT_MANAGER.h" />
+    <ClInclude Include="cMAIN_GAME.h" />
+    <ClInclude Include="cMONSTER_BASE.h" />
+    <ClInclude Include="cMY_PLAYER.h" />
+    <ClInclude Include="cPANGGO.h" />
+    <ClInclude Include="cPLAYER_BASE.h" />
+    <ClInclude Include="cRENDERER.h" />
+    <ClInclude Include="cRESOURCE_MANAGER.h" />
+    <ClInclude Include="cSCENE_INTRO.h" />
+    <ClInclude Include="cSCENE_MAIN.h" />
+    <ClInclude Include="cSCENE_START.h" />
+    <ClInclude Include="cSCENE_TUTO.h" />
+    <ClInclude Include="cSINGLETON.h" />
+    <ClInclude Include="cSTATE_IDLE.h" />
+    <ClInclude Include="cVECTOR_2D.h" />
+    <ClInclude Include="cWEAPONS.h" />
+    <ClInclude Include="iCOLLISION.h" />
+    <ClInclude Include="iSCENE_BASE.h" />
+    <ClInclude Include="iSTATE.h" />
+    <ClInclude Include="iUI_BASE.h" />
+    <ClInclude Include="MonsterHunter2D.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cCAMERA.cpp" />
+    <ClCompile Include="cGAME_OBJECT.cpp" />
+    <ClCompile Include="cGRID.cpp" />
+    <ClCompile Include="cINPUT_MANAGER.cpp" />
+    <ClCompile Include="cMAIN_GAME.cpp" />
+    <ClCompile Include="cMONSTER_BASE.cpp" />
+    <ClCompile Include="cMY_PLAYER.cpp" />
+    <ClCompile Include="cPANGGO.cpp" />
+    <ClCompile Include="cPLAYER_BASE.cpp" />
+    <ClCompile Include="cRENDERER.cpp" />
+    <ClCompile Include="cRESOURCE_MANAGER.cpp" />
+    <ClCompile Include="cSCENE_INTRO.cpp" />
+    <ClCompile Include="cSCENE_MAIN.cpp" />
+    <ClCompile Include="cSCENE_START.cpp" />
+    <ClCompile Include="cSCENE_TUTO.cpp" />
+    <ClCompile Include="cSTATE_IDLE.cpp" />
+    <ClCompile Include="cVECTOR_2D.cpp" />
+    <ClCompile Include="cWEAPONS.cpp" />
+    <ClCompile Include="MonsterHunter2D.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MonsterHunter2D.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="MonsterHunter2D.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\INTERFACE">
+      <UniqueIdentifier>{4dadd8b4-fdce-4984-8dec-b7218c477556}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MAIN GAME">
+      <UniqueIdentifier>{31032ff3-3bdb-44bf-b4de-10fcf4c8dc66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MAIN GAME\GAME OBJECT">
+      <UniqueIdentifier>{d5308c09-7993-4abe-80b7-d0a9b67c8aed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MAIN GAME\SCENE">
+      <UniqueIdentifier>{49cf1453-0b7f-4719-a2aa-77f342bf0846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MAIN GAME\UI">
+      <UniqueIdentifier>{41226511-5885-4b6b-8c7a-bea783587eae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MAIN GAME\MANAGER">
+      <UniqueIdentifier>{bc97d31d-7ee7-4715-8450-f8e44541bf6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MAIN GAME\GAME OBJECT\monster">
+      <UniqueIdentifier>{306de84f-9caa-4763-8cf4-7fc4e91a7305}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MAIN GAME\GAME OBJECT\monster\state">
+      <UniqueIdentifier>{b90a89a8-9978-4381-8c79-d2825dfcbee3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="cSCENE_INTRO.h">
+      <Filter>소스 파일\MAIN GAME\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="cSCENE_MAIN.h">
+      <Filter>소스 파일\MAIN GAME\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="cSCENE_START.h">
+      <Filter>소스 파일\MAIN GAME\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="cSCENE_TUTO.h">
+      <Filter>소스 파일\MAIN GAME\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="iCOLLISION.h">
+      <Filter>소스 파일\INTERFACE</Filter>
+    </ClInclude>
+    <ClInclude Include="iSCENE_BASE.h">
+      <Filter>소스 파일\INTERFACE</Filter>
+    </ClInclude>
+    <ClInclude Include="cMAIN_GAME.h">
+      <Filter>소스 파일\MAIN GAME</Filter>
+    </ClInclude>
+    <ClInclude Include="cSINGLETON.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterHunter2D.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="iUI_BASE.h">
+      <Filter>소스 파일\MAIN GAME\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="cPLAYER_BASE.h">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
+    </ClInclude>
+    <ClInclude Include="cMY_PLAYER.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="cGRID.h">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
+    </ClInclude>
+    <ClInclude Include="cWEAPONS.h">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
+    </ClInclude>
+    <ClInclude Include="cINPUT_MANAGER.h">
+      <Filter>소스 파일\MAIN GAME\MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="cRESOURCE_MANAGER.h">
+      <Filter>소스 파일\MAIN GAME\MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="cCAMERA.h">
+      <Filter>소스 파일\MAIN GAME\MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="cRENDERER.h">
+      <Filter>소스 파일\MAIN GAME\MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="cGAME_OBJECT.h">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
+    </ClInclude>
+    <ClInclude Include="iSTATE.h">
+      <Filter>소스 파일\INTERFACE</Filter>
+    </ClInclude>
+    <ClInclude Include="cPANGGO.h">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT\monster</Filter>
+    </ClInclude>
+    <ClInclude Include="cSTATE_IDLE.h">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT\monster\state</Filter>
+    </ClInclude>
+    <ClInclude Include="cMONSTER_BASE.h">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
+    </ClInclude>
+    <ClInclude Include="cVECTOR_2D.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cSCENE_INTRO.cpp">
+      <Filter>소스 파일\MAIN GAME\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="cSCENE_MAIN.cpp">
+      <Filter>소스 파일\MAIN GAME\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="cSCENE_START.cpp">
+      <Filter>소스 파일\MAIN GAME\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="cSCENE_TUTO.cpp">
+      <Filter>소스 파일\MAIN GAME\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="cMAIN_GAME.cpp">
+      <Filter>소스 파일\MAIN GAME</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterHunter2D.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cPLAYER_BASE.cpp">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
+    </ClCompile>
+    <ClCompile Include="cMY_PLAYER.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cGRID.cpp">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
+    </ClCompile>
+    <ClCompile Include="cWEAPONS.cpp">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
+    </ClCompile>
+    <ClCompile Include="cINPUT_MANAGER.cpp">
+      <Filter>소스 파일\MAIN GAME\MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="cRESOURCE_MANAGER.cpp">
+      <Filter>소스 파일\MAIN GAME\MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="cCAMERA.cpp">
+      <Filter>소스 파일\MAIN GAME\MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="cRENDERER.cpp">
+      <Filter>소스 파일\MAIN GAME\MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="cGAME_OBJECT.cpp">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
+    </ClCompile>
+    <ClCompile Include="cPANGGO.cpp">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT\monster</Filter>
+    </ClCompile>
+    <ClCompile Include="cSTATE_IDLE.cpp">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT\monster\state</Filter>
+    </ClCompile>
+    <ClCompile Include="cMONSTER_BASE.cpp">
+      <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
+    </ClCompile>
+    <ClCompile Include="cVECTOR_2D.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MonsterHunter2D.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="MonsterHunter2D.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
