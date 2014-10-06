@@ -27,6 +27,9 @@ public:
 	void loadMapData(std::vector<std::string>& file_names, 
 		std::vector<sMAP_DATA>& map);
 	
+	/*void saveMapData(std::vector<std::string>& file_names,
+		std::vector<sMAP_DATA>& map);*/
+	
 	std::vector<sMAP_DATA> getMapData(eMAP_NAME map_name);
 
 private:
@@ -34,5 +37,6 @@ private:
 	std::vector<std::string>map_jungle_file_names_;
 	std::vector<sMAP_DATA> map_jungle_;
 	std::vector<std::vector<sMAP_DATA>> maps_;
+	
 };
 

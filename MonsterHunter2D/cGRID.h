@@ -2,7 +2,7 @@
 #include <list>
 #include "cGAME_OBJECT.h"
 #include "hmg_DATA.h"
-struct sMAP_DATA;
+//struct sMAP_DATA;
 
 class cGRID
 {
@@ -17,7 +17,6 @@ public:
 	//POINT getPosition(){ return{ pos_x_, pos_y_ }; };
 	//void setPosition(int x, int y){ pos_x_ = x, pos_y_ = y; };
 	
-	void initMap(std::vector<sMAP_DATA> map);
 	
 	void setMap();
 	
@@ -26,7 +25,7 @@ public:
 	int getHeight(){ return height_; }
 	int getCountX(){ return count_x_; }
 	int getCountY(){ return count_y_; }
-	char** getGridMap(){ return grid_; }
+//	char** getGridMap(){ return grid_; }
 
 	//충돌처리를 요청
 	void checkCollision(cGAME_OBJECT* object);
@@ -44,6 +43,8 @@ public:
 	void insertMapObj();
 	void loadMapData();
 
+	//그리드 다시
+	void initMap(std::vector<sMAP_DATA> data_map);
 private:
 	void clearMapTable();
 	void createMapTable();
@@ -54,12 +55,12 @@ private:
 	int width_, height_;
 	int count_x_, count_y_;
 	RECT limits_grid_;
-	char** grid_;
+	//char** grid_;
 	char map_key_;
 
-public:
+	//cGRID 다시
 	sMAP_DATA current_map_data_;
 	std::vector<sMAP_DATA> current_map_;
-	std::list<cGAME_OBJECT*>** obj_grid_;
+	//std::list<cGAME_OBJECT*>** obj_grid_;
 	
 };

@@ -4,24 +4,17 @@
 #include "cPANGGO.h"
 
 cSCENE_MAIN::cSCENE_MAIN()
-{
-	//grid_ = new cGRID;
+{	
 	grid_ = std::make_shared<cGRID>();
-	player_ = new cPLAYER_BASE;
-
 }
 cSCENE_MAIN::~cSCENE_MAIN()
 {
-	delete player_;
-	player_ = nullptr;
-	/*delete grid_;
-	grid_ = nullptr;*/
+
 }
 
 void cSCENE_MAIN::enter()
 {		
 	grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(eMAP_NAME::map_jungle));
-	//grid_->setGrid(cMAIN_GAME::getInstance()->resource_->map_data1_[eMAP_DATA::world_start]);
 	/*
 		플래이어의 위치와 한계의 설정은 그리드에 종속 되어야 함.
 		그리드(맵의)변경시 플래이어의 우치와 한계가 셋팅 돼어야 함.
@@ -36,9 +29,9 @@ void cSCENE_MAIN::enter()
 void cSCENE_MAIN::update(double delta)
 {
 	//프로그램 종료
-	/*if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_ESCAPE))
+	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_ESCAPE))
 		::DestroyWindow(cMAIN_GAME::getInstance()->hWnd_);	
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_INSERT))
+	/*if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_INSERT))
 		v_monster_.push_back(new cPANGGO(cMAIN_GAME::getInstance()->input_->getMouse(),grid_->getGridLimits()));
 		
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('W'))

@@ -24,6 +24,8 @@ cRESOURCE_MANAGER::cRESOURCE_MANAGER(HINSTANCE hInst)
 }
 cRESOURCE_MANAGER::~cRESOURCE_MANAGER()
 {
+	/*saveMapData(map_jungle_file_names_, map_jungle_);
+	maps_.clear();*/
 }
 
 void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
@@ -38,7 +40,6 @@ void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
 				>> data_.height
 				>> data_.count_x
 				>> data_.count_y
-				//		>> data_.filename
 				>> data_.potal_L_filename
 				>> data_.potal_T_filename
 				>> data_.potal_R_filename
@@ -64,6 +65,49 @@ void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
 	}
 }
 
+//void cRESOURCE_MANAGER::saveMapData(std::vector<std::string>& file_names,
+//	std::vector<sMAP_DATA>& map)
+//{
+//	for (int i = 0; i < file_names.size(); i++)
+//	{
+//		std::ofstream ofile(file_names[i]);
+//		{
+//			//sMAP_DATA data_;
+//			for (auto data_ : map)
+//			{
+//				ofile << data_.width << " "
+//				<< data_.height << " "
+//				<< data_.count_x << " "
+//				<< data_.count_y << " "
+//				<< data_.potal_L_filename << std::endl
+//				<< data_.potal_T_filename << std::endl
+//				<< data_.potal_R_filename << std::endl
+//				<< data_.potal_B_filename << std::endl
+//				<< data_.floor_img << std::endl
+//				<< data_.background_img << std::endl
+//				<< data_.background_img2 << std::endl;
+//		
+//				for (auto col : data_.data_grid)
+//				{
+//					for (auto row : col)
+//					{
+//						ofile << row <<" ";
+//					}
+//					ofile << std::endl;
+//				}
+//			}
+//			/*for (int y = 0; y < data_.count_y; y++)
+//			{
+//				for (int x = 0; x < data_.count_x; x++)
+//				{
+//					ofile << data_.data_grid[y][x] << " ";
+//				}
+//				ofile << std::endl;
+//			}*/
+//		}
+//		ofile.close();
+//	}
+//}
 std::vector<sMAP_DATA> cRESOURCE_MANAGER::getMapData(eMAP_NAME map_name)
 {
 	return maps_[map_name];

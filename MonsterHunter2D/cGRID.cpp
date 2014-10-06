@@ -5,13 +5,13 @@
 
 cGRID::cGRID()
 {
-	grid_ = nullptr;
-	map_key_ = '0';
+	/*grid_ = nullptr;
+	map_key_ = '0';*/
 }
 
 cGRID::~cGRID()
 {
-	if (grid_ != nullptr)
+	/*if (grid_ != nullptr)
 	{
 		for (int i = 0; i < count_x_; i++)
 		{
@@ -20,7 +20,7 @@ cGRID::~cGRID()
 		}
 		delete[] grid_;
 		grid_ = nullptr;	
-	}
+	}*/
 
 	/*for (int i = 0; i < count_x_; i++)
 	{
@@ -31,10 +31,10 @@ cGRID::~cGRID()
 	tilemap_ = nullptr;*/
 }
 
-void cGRID::initMap(std::vector<sMAP_DATA> map)
+void cGRID::initMap(std::vector<sMAP_DATA> data_map)
 {
-	current_map_ = map;
-	current_map_data_ = map[0];
+	current_map_ = data_map;
+	current_map_data_ = data_map[0];
 }
 
 void cGRID::setMap()
@@ -135,8 +135,9 @@ void cGRID::setMap()
 void cGRID::update(double delta)
 {
 	
-	/*insertMapObj();
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
+	insertMapObj();
+	
+	/*if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
 		cMAIN_GAME::getInstance()->resource_->saveMapFile(file_name_, *this);
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('P'))
 		cMAIN_GAME::getInstance()->resource_->readMapFile(file_name_, *this);
@@ -162,8 +163,18 @@ void cGRID::render()
 			t = y * current_map_data_.height;// -cMAIN_GAME::getInstance()->camera_->getPostion().y;
 			r = l + current_map_data_.width;
 			b = t + current_map_data_.height;
-			cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
+			if (current_map_data_.data_grid[y][x] == 't')
+			{
+				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 0, 255));
+				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
+				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
+			}
+			else
+			{
+				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
+			}
 		}
+
 	/*for (int x = 0; x < count_x_; x++)
 		for (int y = 0; y < count_y_; y++)
 		{
