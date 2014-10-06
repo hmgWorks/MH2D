@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 #include "cGAME_OBJECT.h"
-//#include <memory>
+#include "hmg_DATA.h"
 struct sMAP_DATA;
 
 class cGRID
@@ -17,9 +17,9 @@ public:
 	//POINT getPosition(){ return{ pos_x_, pos_y_ }; };
 	//void setPosition(int x, int y){ pos_x_ = x, pos_y_ = y; };
 	
-	void initGrid(const sMAP_DATA& data);
+	void initMap(std::vector<sMAP_DATA> map);
 	
-	void setGrid(const sMAP_DATA& data);
+	void setMap();
 	
 	RECT getGridLimits();
 	int getWidth(){ return width_; }
@@ -58,21 +58,8 @@ private:
 	char map_key_;
 
 public:
-	std::string file_name_;
-	std::string potal_left_file_name_;
-	std::string potal_top_file_name_;
-	std::string potal_right_file_name_;
-	std::string potal_bottom_file_name_;
-	std::string floor_img_file_;
-	std::string background_img_file_;
-	std::string background_img2_file_;
-	std::list<cGAME_OBJECT*>** tilemap_;
-		
-	//std::vector<char> data_row_;
-	//std::vector<std::vector<char>> data_table_;
-	//	
-	////std::list<cGAME_OBJECT*>** obj_table_;
-	//
-	//std::vector < std::list<std::shared_ptr<cGAME_OBJECT>>>obj_row_;
-	//std::vector<std::vector < std::list<std::shared_ptr<cGAME_OBJECT>>>> obj_table_;
+	sMAP_DATA current_map_data_;
+	std::vector<sMAP_DATA> current_map_;
+	std::list<cGAME_OBJECT*>** obj_grid_;
+	
 };

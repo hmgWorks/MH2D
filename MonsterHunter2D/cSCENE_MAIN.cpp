@@ -20,6 +20,7 @@ cSCENE_MAIN::~cSCENE_MAIN()
 
 void cSCENE_MAIN::enter()
 {		
+	grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(eMAP_NAME::map_jungle));
 	//grid_->setGrid(cMAIN_GAME::getInstance()->resource_->map_data1_[eMAP_DATA::world_start]);
 	/*
 		플래이어의 위치와 한계의 설정은 그리드에 종속 되어야 함.

@@ -96,6 +96,7 @@
     <ClInclude Include="cSTATE_IDLE.h" />
     <ClInclude Include="cVECTOR_2D.h" />
     <ClInclude Include="cWEAPONS.h" />
+    <ClInclude Include="hmg_DATA.h" />
     <ClInclude Include="iCOLLISION.h" />
     <ClInclude Include="iSCENE_BASE.h" />
     <ClInclude Include="iSTATE.h" />

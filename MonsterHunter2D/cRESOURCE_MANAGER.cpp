@@ -20,6 +20,7 @@ cRESOURCE_MANAGER::cRESOURCE_MANAGER(HINSTANCE hInst)
 	};
 	
 	loadMapData(map_jungle_file_names_, map_jungle_);
+	maps_.push_back(map_jungle_);
 }
 cRESOURCE_MANAGER::~cRESOURCE_MANAGER()
 {
@@ -62,6 +63,12 @@ void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
 		ifile.close();
 	}
 }
+
+std::vector<sMAP_DATA> cRESOURCE_MANAGER::getMapData(eMAP_NAME map_name)
+{
+	return maps_[map_name];
+}
+
 void cRESOURCE_MANAGER::createFile(std::string filename)
 {
 

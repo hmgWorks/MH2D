@@ -6,28 +6,40 @@
 cGRID::cGRID()
 {
 	grid_ = nullptr;
-	tilemap_ = nullptr;
-
 	map_key_ = '0';
 }
 
 cGRID::~cGRID()
 {
-	for (int i = 0; i < count_x_; i++)
+	if (grid_ != nullptr)
 	{
-		delete[] grid_[i];
-		grid_[i] = nullptr;
+		for (int i = 0; i < count_x_; i++)
+		{
+			delete[] grid_[i];
+			grid_[i] = nullptr;
+		}
+		delete[] grid_;
+		grid_ = nullptr;	
 	}
-	delete[] grid_;
-	grid_ = nullptr;	
 
-	for (int i = 0; i < count_x_; i++)
+	/*for (int i = 0; i < count_x_; i++)
 	{
 		delete[] tilemap_[i];
 		tilemap_[i] = nullptr;
 	}
 	delete[] tilemap_;
-	tilemap_ = nullptr;
+	tilemap_ = nullptr;*/
+}
+
+void cGRID::initMap(std::vector<sMAP_DATA> map)
+{
+	current_map_ = map;
+	current_map_data_ = map[0];
+}
+
+void cGRID::setMap()
+{
+	
 }
 //void cGRID::initGrid(const sMAP_DATA& data)
 ////void cGRID::initGrid(int width, int height, int count_x, int count_y)
@@ -82,9 +94,9 @@ cGRID::~cGRID()
 //		tilemap_[i] = new std::list<cGAME_OBJECT*>[count_y_];
 //}
 
-void cGRID::setGrid(const sMAP_DATA& data)
+//void cGRID::setGrid(const sMAP_DATA& data)
 //void cGRID::initGrid(int width, int height, int count_x, int count_y)
-{
+//{
 	/*clearMapTable();
 	
 	width_ = data.width;
@@ -118,7 +130,7 @@ void cGRID::setGrid(const sMAP_DATA& data)
 	tilemap_ = new std::list<cGAME_OBJECT*>*[count_x_];
 	for (int i = 0; i < count_x_; i++)
 		tilemap_[i] = new std::list<cGAME_OBJECT*>[count_y_];*/
-}
+//}
 
 void cGRID::update(double delta)
 {
@@ -141,9 +153,18 @@ void cGRID::update(double delta)
 }
 
 void cGRID::render()
-{
-	/*int l, t, r, b;
-	for (int x = 0; x < count_x_; x++)
+{	
+	int l, t, r, b;
+	for (int x = 0; x < current_map_data_.count_x; x++)
+		for (int y = 0; y < current_map_data_.count_y; y++)
+		{
+			l = x * current_map_data_.width;// -cMAIN_GAME::getInstance()->camera_->getPostion().x;
+			t = y * current_map_data_.height;// -cMAIN_GAME::getInstance()->camera_->getPostion().y;
+			r = l + current_map_data_.width;
+			b = t + current_map_data_.height;
+			cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
+		}
+	/*for (int x = 0; x < count_x_; x++)
 		for (int y = 0; y < count_y_; y++)
 		{
 			l = x * width_ - cMAIN_GAME::getInstance()->camera_->getPostion().x;

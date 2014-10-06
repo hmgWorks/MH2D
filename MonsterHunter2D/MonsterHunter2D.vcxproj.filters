@@ -123,6 +123,9 @@
     <ClInclude Include="cVECTOR_2D.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="hmg_DATA.h">
+      <Filter>소스 파일\MAIN GAME</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
