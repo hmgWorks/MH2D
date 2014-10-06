@@ -36,8 +36,8 @@ void cSCENE_MAIN::update(double delta)
 		
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('W'))
 		cMAIN_GAME::getInstance()->camera_->vibrateSwitch();
-	
-	grid_->update(delta);*/
+	*/
+	grid_->update(delta);
 	
 	
 	

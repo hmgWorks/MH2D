@@ -31,7 +31,7 @@ cGRID::~cGRID()
 	tilemap_ = nullptr;*/
 }
 
-void cGRID::initMap(std::vector<sMAP_DATA> data_map)
+void cGRID::initMap(std::vector<sMAP_DATA>& data_map)
 {
 	current_map_ = data_map;
 	current_map_data_ = data_map[0];
@@ -166,6 +166,12 @@ void cGRID::render()
 			if (current_map_data_.data_grid[y][x] == 't')
 			{
 				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 0, 255));
+				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
+				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
+			}
+			else if (current_map_data_.data_grid[y][x] == '1')
+			{
+				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 255, 255));
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
 				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
 			}
@@ -346,8 +352,8 @@ void cGRID::clearTileMap()
 
 void cGRID::insertMapObj()
 {
-	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('1'))
-	//	map_key_ = '1';
+	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('1'))
+		map_key_ = '1';
 	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('2'))
 	//	map_key_ = '2';
 	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('3'))
@@ -371,12 +377,12 @@ void cGRID::insertMapObj()
 	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('B'))
 	//	map_key_ = 'b';
 
-	//if (cMAIN_GAME::getInstance()->input_->getMouseDown())
-	//{
-	//	int x = (cMAIN_GAME::getInstance()->input_->getMouse().x + cMAIN_GAME::getInstance()->camera_->getPostion().x) / width_;
-	//	int y = (cMAIN_GAME::getInstance()->input_->getMouse().y + cMAIN_GAME::getInstance()->camera_->getPostion().y) / height_;
-	//	grid_[x][y] = map_key_;
-	//}
+	if (cMAIN_GAME::getInstance()->input_->getMouseDown())
+	{
+		int x = (cMAIN_GAME::getInstance()->input_->getMouse().x)/current_map_data_.width;// +cMAIN_GAME::getInstance()->camera_->getPostion().x) / width_;
+		int y = (cMAIN_GAME::getInstance()->input_->getMouse().y)/current_map_data_.height;// +cMAIN_GAME::getInstance()->camera_->getPostion().y) / height_;
+		current_map_data_.data_grid[y][x] = map_key_;
+	}
 }
 
 void cGRID::loadMapData()

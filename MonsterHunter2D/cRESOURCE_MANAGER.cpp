@@ -108,7 +108,7 @@ void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
 //		ofile.close();
 //	}
 //}
-std::vector<sMAP_DATA> cRESOURCE_MANAGER::getMapData(eMAP_NAME map_name)
+std::vector<sMAP_DATA>& cRESOURCE_MANAGER::getMapData(eMAP_NAME map_name)
 {
 	return maps_[map_name];
 }

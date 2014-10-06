@@ -44,7 +44,7 @@ public:
 	void loadMapData();
 
 	//그리드 다시
-	void initMap(std::vector<sMAP_DATA> data_map);
+	void initMap(std::vector<sMAP_DATA>& data_map);
 private:
 	void clearMapTable();
 	void createMapTable();
