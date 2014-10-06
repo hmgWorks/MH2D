@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 #include "cGAME_OBJECT.h"
-#include <memory>
+//#include <memory>
 struct sMAP_DATA;
 
 class cGRID
@@ -68,11 +68,11 @@ public:
 	std::string background_img2_file_;
 	std::list<cGAME_OBJECT*>** tilemap_;
 		
-	std::vector<char> data_row_;
-	std::vector<std::vector<char>> data_table_;
-		
-	//std::list<cGAME_OBJECT*>** obj_table_;
-	
-	std::vector < std::list<std::shared_ptr<cGAME_OBJECT>>>obj_row_;
-	std::vector<std::vector < std::list<std::shared_ptr<cGAME_OBJECT>>>> obj_table_;
+	//std::vector<char> data_row_;
+	//std::vector<std::vector<char>> data_table_;
+	//	
+	////std::list<cGAME_OBJECT*>** obj_table_;
+	//
+	//std::vector < std::list<std::shared_ptr<cGAME_OBJECT>>>obj_row_;
+	//std::vector<std::vector < std::list<std::shared_ptr<cGAME_OBJECT>>>> obj_table_;
 };

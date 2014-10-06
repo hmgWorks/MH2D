@@ -10,7 +10,6 @@ struct sMAP_DATA
 	int height;
 	int count_x;
 	int count_y;
-	std::string filename;
 	std::string potal_L_filename;
 	std::string potal_T_filename;
 	std::string potal_R_filename;
@@ -18,17 +17,15 @@ struct sMAP_DATA
 	std::string floor_img;
 	std::string background_img;
 	std::string background_img2;
+	std::vector<std::vector<char>> data_grid;
 };
-//enum eMAP_DATA
-//{
-//	MAP1_1, MAP1_2, MAP1_3,
-//	MAP2_1, MAP2_2, MAP2_3
-//};
+
 enum eMAP_DATA
 {
 	world_start, world_left, world_top,
 	world_right, world_bottom
 };
+
 class cRESOURCE_MANAGER
 {
 public:
@@ -46,13 +43,15 @@ public:
 	void createPlayerFile(std::string filename);
 
 	void loadImage();
-//private:
-	std::vector<sMAP_DATA> map_data_;
 
-	void loadMap();
-	std::vector<sMAP_DATA> map_data1_;
+	//grid 관련 다시
+	void loadMapData(std::vector<std::string>& file_names, 
+		std::vector<sMAP_DATA>& map);
+	
+
 private:
 	HINSTANCE hInst_;
-	std::vector<std::string>map_file_names_;
+	std::vector<std::string>map_jungle_file_names_;
+	std::vector<sMAP_DATA> map_jungle_;
 };
 

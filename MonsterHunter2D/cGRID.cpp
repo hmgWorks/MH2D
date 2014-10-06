@@ -85,7 +85,7 @@ cGRID::~cGRID()
 void cGRID::setGrid(const sMAP_DATA& data)
 //void cGRID::initGrid(int width, int height, int count_x, int count_y)
 {
-	clearMapTable();
+	/*clearMapTable();
 	
 	width_ = data.width;
 	height_ = data.height;
@@ -100,7 +100,7 @@ void cGRID::setGrid(const sMAP_DATA& data)
 	limits_grid_ = { 0, 0, width_*count_x_, height_* count_y_ };
 	
 	cMAIN_GAME::getInstance()->resource_->saveMapFile(file_name_, *this);
-	loadFileData();
+	loadFileData();*/
 	//loadMapData();
 	/*for (int x = 0; x < count_x_; x++)
 	for (int y = 0; y < count_y_; y++)
@@ -111,7 +111,7 @@ void cGRID::setGrid(const sMAP_DATA& data)
 	/*
 	cGAME_OBJECT의 포인터를 담는 리스트의 2차 배열 의 종적 할당
 	*/
-	createMapTable();
+	//createMapTable();
 	/*if (tilemap_ != nullptr)
 		clearTileMap();
 
@@ -123,7 +123,7 @@ void cGRID::setGrid(const sMAP_DATA& data)
 void cGRID::update(double delta)
 {
 	
-	insertMapObj();
+	/*insertMapObj();
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
 		cMAIN_GAME::getInstance()->resource_->saveMapFile(file_name_, *this);
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('P'))
@@ -137,12 +137,12 @@ void cGRID::update(double delta)
 				for (auto x : tilemap_[j][i])
 					x->update(delta);
 		}
-	}
+	}*/
 }
 
 void cGRID::render()
 {
-	int l, t, r, b;
+	/*int l, t, r, b;
 	for (int x = 0; x < count_x_; x++)
 		for (int y = 0; y < count_y_; y++)
 		{
@@ -233,17 +233,18 @@ void cGRID::render()
 				for (auto x : tilemap_[j][i])
 					x->render();
 		}
-	}
+	}*/
 }
 
 RECT cGRID::getGridLimits()
 {
-	return limits_grid_;
+	//return limits_grid_;
+	return{0,0,0,0};
 }
 
 void cGRID::initPlayer1(cGAME_OBJECT* object)
 {
-	for (int x = 0; x < count_x_; x++)
+	/*for (int x = 0; x < count_x_; x++)
 	{
 		for (int y = 0; y < count_y_; y++)
 		{			
@@ -254,11 +255,11 @@ void cGRID::initPlayer1(cGAME_OBJECT* object)
 			}
 
 		}
-	}
+	}*/
 }
 void cGRID::initPlayer2(cGAME_OBJECT* object)
 {
-	for (int x = 0; x < count_x_; x++)
+	/*for (int x = 0; x < count_x_; x++)
 	{
 		for (int y = 0; y < count_y_; y++)
 		{
@@ -269,32 +270,32 @@ void cGRID::initPlayer2(cGAME_OBJECT* object)
 			}
 
 		}
-	}
+	}*/
 }
 
 void cGRID::setTileMap(cGAME_OBJECT* object)
 {
-	if (object->getCellPos().x != -1)
-	{		
-		//remove는 넘겨진 값을 찾아 삭제한다.
-		tilemap_[object->getCellPos().x][object->getCellPos().y].remove(object);	
-	}
+	//if (object->getCellPos().x != -1)
+	//{		
+	//	//remove는 넘겨진 값을 찾아 삭제한다.
+	//	tilemap_[object->getCellPos().x][object->getCellPos().y].remove(object);	
+	//}
 
-	int x = object->getPos().x /*+ cMAIN_GAME::getInstance()->camera_->getPostion().x)*/ / width_;
-	int y = object->getPos().y /*+ cMAIN_GAME::getInstance()->camera_->getPostion().y)*/ / height_;
-	
-	if (x >= count_x_)
-		x = count_x_-1;
-	if (y >= count_y_)
-		y = count_y_-1;
-	
-	object->setCellPos({ x, y });
-	tilemap_[x][y].push_back(object);	
+	//int x = object->getPos().x /*+ cMAIN_GAME::getInstance()->camera_->getPostion().x)*/ / width_;
+	//int y = object->getPos().y /*+ cMAIN_GAME::getInstance()->camera_->getPostion().y)*/ / height_;
+	//
+	//if (x >= count_x_)
+	//	x = count_x_-1;
+	//if (y >= count_y_)
+	//	y = count_y_-1;
+	//
+	//object->setCellPos({ x, y });
+	//tilemap_[x][y].push_back(object);	
 }
 
 void cGRID::clearTileMap()
 {
-	for (int y = 0; y < count_y_; y++)
+	/*for (int y = 0; y < count_y_; y++)
 	{
 		for (int x = 0; x < count_x_; x++)
 		{
@@ -308,52 +309,52 @@ void cGRID::clearTileMap()
 		tilemap_[i] = nullptr;
 	}
 	delete[] tilemap_;
-	tilemap_ = nullptr;
+	tilemap_ = nullptr;*/
 }
 
 void cGRID::insertMapObj()
 {
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('1'))
-		map_key_ = '1';
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('2'))
-		map_key_ = '2';
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('3'))
-		map_key_ = '3';//입구
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('4'))
-		map_key_ = '4';//출구
-	
+	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('1'))
+	//	map_key_ = '1';
+	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('2'))
+	//	map_key_ = '2';
+	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('3'))
+	//	map_key_ = '3';//입구
+	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('4'))
+	//	map_key_ = '4';//출구
+	//
 	//플래이어 시작 위치
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('8'))
-		map_key_ = '8';
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('9'))
-		map_key_ = '9';
+	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('8'))
+	//	map_key_ = '8';
+	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('9'))
+	//	map_key_ = '9';
 
-	//potal
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('L'))
-		map_key_ = 'l';
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('T'))
-		map_key_ = 't';
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('R'))
-		map_key_ = 'r';
-	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('B'))
-		map_key_ = 'b';
+	////potal
+	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('L'))
+	//	map_key_ = 'l';
+	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('T'))
+	//	map_key_ = 't';
+	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('R'))
+	//	map_key_ = 'r';
+	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('B'))
+	//	map_key_ = 'b';
 
-	if (cMAIN_GAME::getInstance()->input_->getMouseDown())
-	{
-		int x = (cMAIN_GAME::getInstance()->input_->getMouse().x + cMAIN_GAME::getInstance()->camera_->getPostion().x) / width_;
-		int y = (cMAIN_GAME::getInstance()->input_->getMouse().y + cMAIN_GAME::getInstance()->camera_->getPostion().y) / height_;
-		grid_[x][y] = map_key_;
-	}
+	//if (cMAIN_GAME::getInstance()->input_->getMouseDown())
+	//{
+	//	int x = (cMAIN_GAME::getInstance()->input_->getMouse().x + cMAIN_GAME::getInstance()->camera_->getPostion().x) / width_;
+	//	int y = (cMAIN_GAME::getInstance()->input_->getMouse().y + cMAIN_GAME::getInstance()->camera_->getPostion().y) / height_;
+	//	grid_[x][y] = map_key_;
+	//}
 }
 
 void cGRID::loadMapData()
 {
-	cMAIN_GAME::getInstance()->resource_->readMapFile(file_name_, *this);
+	//cMAIN_GAME::getInstance()->resource_->readMapFile(file_name_, *this);
 }
 
 void cGRID::checkCollision(cGAME_OBJECT* object)
 {
-	if (grid_[object->getCellPos().x][object->getCellPos().y] == 'l')
+	/*if (grid_[object->getCellPos().x][object->getCellPos().y] == 'l')
 	{
 		initGrid(cMAIN_GAME::getInstance()->resource_->map_data_[eMAP_DATA::world_left]);
 		initPlayer1(object);
@@ -362,12 +363,12 @@ void cGRID::checkCollision(cGAME_OBJECT* object)
 	{
 		initGrid(cMAIN_GAME::getInstance()->resource_->map_data_[eMAP_DATA::world_right]);
 		initPlayer2(object);
-	}	
+	}*/	
 }
 
 void cGRID::clearMapTable()
 {
-	if (!data_table_.empty())
+	/*if (!data_table_.empty())
 		for (auto x : data_table_)
 			x.clear();
 		data_table_.clear();
@@ -375,7 +376,7 @@ void cGRID::clearMapTable()
 	if (!obj_table_.empty())
 		for (auto x : obj_table_)
 			x.clear();
-		obj_table_.clear();
+		obj_table_.clear();*/
 
 	/*if (obj_table_ != nullptr)
 	{
@@ -398,11 +399,12 @@ void cGRID::clearMapTable()
 }
 void cGRID::createMapTable()
 {
-	data_row_.resize(count_x_, '0');
+	/*data_row_.resize(count_x_, '0');
 	data_table_.resize(count_y_, data_row_);
 
 	obj_row_.resize(count_x_);
-	obj_table_.resize(count_y_);
+	obj_table_.resize(count_y_);*/
+	
 	/*obj_table_ = new std::list<cGAME_OBJECT*>*[count_x_];
 	for (int i = 0; i < count_y_; i++)
 		obj_table_[i] = new std::list<cGAME_OBJECT*>[count_y_];*/
@@ -410,5 +412,5 @@ void cGRID::createMapTable()
 
 void cGRID::loadFileData()
 {
-	cMAIN_GAME::getInstance()->resource_->readMapFile(file_name_, *this);
+	//cMAIN_GAME::getInstance()->resource_->readMapFile(file_name_, *this);
 }
