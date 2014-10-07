@@ -24,7 +24,7 @@ public:
 //	char** getGridMap(){ return grid_; }
 
 	//面倒贸府甫 夸没
-	void checkCollision(cGAME_OBJECT* object);
+	void checkCollision(std::shared_ptr<cGAME_OBJECT>& obj);
 	//磊脚狼 面倒贸府
 	//void procCollision(){};
 
