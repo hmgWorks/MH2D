@@ -73,12 +73,13 @@ void cRESOURCE_MANAGER::saveMapData(std::vector<std::string>& file_names,
 		std::ofstream ofile(file_names[i]);
 		{
 			//sMAP_DATA data_;
-			for (auto data_ : map)
-			{
-				ofile << data_.width << " "
+			sMAP_DATA data_ = map[i];
+			/*for (auto data_ : map)
+			{*/
+			ofile << data_.width << " "
 				<< data_.height << " "
 				<< data_.count_x << " "
-				<< data_.count_y << " "
+				<< data_.count_y << " " << std::endl
 				<< data_.potal_L_filename << std::endl
 				<< data_.potal_T_filename << std::endl
 				<< data_.potal_R_filename << std::endl
@@ -95,7 +96,7 @@ void cRESOURCE_MANAGER::saveMapData(std::vector<std::string>& file_names,
 					}
 					ofile << std::endl;
 				}
-			}
+			//}
 			/*for (int y = 0; y < data_.count_y; y++)
 			{
 				for (int x = 0; x < data_.count_x; x++)

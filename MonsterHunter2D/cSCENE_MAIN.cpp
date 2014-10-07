@@ -34,7 +34,6 @@ void cSCENE_MAIN::enter()
 
 void cSCENE_MAIN::update(double delta)
 {
-
 	//프로그램 종료
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_ESCAPE))
 		::DestroyWindow(cMAIN_GAME::getInstance()->hWnd_);	
@@ -50,6 +49,7 @@ void cSCENE_MAIN::update(double delta)
 		
 	cMAIN_GAME::getInstance()->camera_->update(delta);	
 
+	//grid_->checkCollision(player_);
 	//
 	////맵전환 시 객체 정리
 	//if (!v_monster_.empty())

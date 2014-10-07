@@ -166,6 +166,7 @@ void cGRID::update(double delta)
 	
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
 	{
+		current_map_[1] = current_map_data_;
 		maps_[eMAP_NAME::map_jungle] = current_map_;
 		cMAIN_GAME::getInstance()->resource_->setMapData(maps_);
 	}
@@ -202,7 +203,7 @@ void cGRID::render()
 			if (current_map_data_.data_grid[y][x] == 'l'
 				|| current_map_data_.data_grid[y][x] == 't'
 				|| current_map_data_.data_grid[y][x] == 'r'
-				|| current_map_data_.data_grid[y][x] == 'l')
+				|| current_map_data_.data_grid[y][x] == 'b')
 			{
 				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 0, 255));
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
@@ -253,60 +254,6 @@ void cGRID::render()
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
 				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
 			}
-			else if (grid_[x][y] == '2')
-			{
-				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(100, 0, 255));
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
-				cMAIN_GAME::getInstance()->renderer_->deleteBrush();				
-			}
-			else if (grid_[x][y] == '3')
-			{
-				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(255, 0, 0));
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
-				cMAIN_GAME::getInstance()->renderer_->deleteBrush();				
-			}
-			else if (grid_[x][y] == '4')
-			{
-				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 0, 255));
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
-				cMAIN_GAME::getInstance()->renderer_->deleteBrush();				
-			}
-			else if (grid_[x][y] == '8')
-			{
-				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(200, 200, 200));
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
-				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
-			}
-			else if (grid_[x][y] == '9')
-			{
-				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(50, 50, 50));
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
-				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
-			}
-			else if (grid_[x][y] == 'l')
-			{
-				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 0, 255));
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
-				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
-			}
-			else if (grid_[x][y] == 't')
-			{
-				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 0, 255));
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
-				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
-			}
-			else if (grid_[x][y] == 'r')
-			{
-				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 0, 255));
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
-				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
-			}
-			else if (grid_[x][y] == 'b')
-			{
-				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 0, 255));
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
-				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
-			}
 			else
 			{
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
@@ -326,10 +273,10 @@ void cGRID::render()
 
 void cGRID::checkCollision(std::shared_ptr<cGAME_OBJECT>& obj)
 {
-	if (current_map_data_.data_grid[obj->getCellPos().x][obj->getCellPos().y] == 'l')
-	{
+	//if (current_map_data_.data_grid[obj->getCellPos().x][obj->getCellPos().y] == 'l')
+	//{
 
-	}
+	//}
 }
 RECT cGRID::getGridLimits()
 {
@@ -474,20 +421,6 @@ void cGRID::insertMapObj()
 void cGRID::loadMapData()
 {
 	//cMAIN_GAME::getInstance()->resource_->readMapFile(file_name_, *this);
-}
-
-void cGRID::checkCollision(cGAME_OBJECT* object)
-{
-	/*if (grid_[object->getCellPos().x][object->getCellPos().y] == 'l')
-	{
-		initGrid(cMAIN_GAME::getInstance()->resource_->map_data_[eMAP_DATA::world_left]);
-		initPlayer1(object);
-	}
-	if (grid_[object->getCellPos().x][object->getCellPos().y] == 'r')
-	{
-		initGrid(cMAIN_GAME::getInstance()->resource_->map_data_[eMAP_DATA::world_right]);
-		initPlayer2(object);
-	}*/	
 }
 
 void cGRID::clearMapTable()
