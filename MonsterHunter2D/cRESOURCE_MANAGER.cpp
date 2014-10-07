@@ -109,13 +109,13 @@ void cRESOURCE_MANAGER::saveMapData(std::vector<std::string>& file_names,
 	}
 }
 
-std::vector<sMAP_DATA>& cRESOURCE_MANAGER::getMapData(eMAP_NAME map_name)
+std::vector<std::vector<sMAP_DATA>>& cRESOURCE_MANAGER::getMapData()
 {
-	return maps_[map_name];
+	return maps_;
 }
-void cRESOURCE_MANAGER::setMapData(eMAP_NAME map_name, std::vector<sMAP_DATA> map_data)
+void cRESOURCE_MANAGER::setMapData(std::vector<std::vector<sMAP_DATA>> map_data)
 {
-	maps_[map_name] = map_data;
+	maps_ = map_data;
 }
 
 void cRESOURCE_MANAGER::createFile(std::string filename)

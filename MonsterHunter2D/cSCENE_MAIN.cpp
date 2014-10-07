@@ -5,7 +5,8 @@
 
 cSCENE_MAIN::cSCENE_MAIN()
 {	
-	grid_ = std::make_shared<cGRID>();
+	grid_ = nullptr;
+	player_ = nullptr;	
 }
 cSCENE_MAIN::~cSCENE_MAIN()
 {
@@ -13,17 +14,22 @@ cSCENE_MAIN::~cSCENE_MAIN()
 }
 
 void cSCENE_MAIN::enter()
-{		
-	grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(eMAP_NAME::map_jungle));
+{	
+	grid_ = std::make_shared<cGRID>();
+	player_ = std::make_shared<cPLAYER_BASE>();
+	grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(), player_);
+
 	/*
 		플래이어의 위치와 한계의 설정은 그리드에 종속 되어야 함.
 		그리드(맵의)변경시 플래이어의 우치와 한계가 셋팅 돼어야 함.
 		카메라는 플래이어에 종속돼
 	*/
+
 	/*grid_->initPlayer1(player_);	
 	player_->setLimits(grid_->getGridLimits());	
 	cMAIN_GAME::getInstance()->camera_->setLimit(grid_->getGridLimits());	
 	cMAIN_GAME::getInstance()->camera_->setTarget(player_);*/
+	cMAIN_GAME::getInstance()->camera_->setTarget(player_);
 }
 
 void cSCENE_MAIN::update(double delta)
@@ -32,17 +38,17 @@ void cSCENE_MAIN::update(double delta)
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_ESCAPE))
 		::DestroyWindow(cMAIN_GAME::getInstance()->hWnd_);	
 	/*if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_INSERT))
-		v_monster_.push_back(new cPANGGO(cMAIN_GAME::getInstance()->input_->getMouse(),grid_->getGridLimits()));
+		v_monster_.push_back(new cPANGGO(cMAIN_GAME::getInstance()->input_->getMouse(),grid_->getGridLimits()));*/
 		
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('W'))
 		cMAIN_GAME::getInstance()->camera_->vibrateSwitch();
-	*/
+	
 	grid_->update(delta);
+	player_->update(delta);
 	
 	
 	
-	
-	//cMAIN_GAME::getInstance()->camera_->update(delta);	
+	cMAIN_GAME::getInstance()->camera_->update(delta);	
 
 	//grid_->setTileMap(player_);
 	//
@@ -57,7 +63,7 @@ void cSCENE_MAIN::update(double delta)
 void cSCENE_MAIN::render()
 {
 	grid_->render();
-	
+	player_->render();
 	WCHAR ch[100];
 	wsprintf(ch, L"camera: %d, %d", 
 		cMAIN_GAME::getInstance()->camera_->getPostion().x,

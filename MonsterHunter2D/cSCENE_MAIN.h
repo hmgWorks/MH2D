@@ -20,7 +20,7 @@ public:
 	void exit();
 
 private:	
-	std::shared_ptr<iSCENE_BASE> current_scene_;
+	
 	std::shared_ptr<cGAME_OBJECT> player_;
 	std::vector<std::shared_ptr<cGAME_OBJECT>> v_monster_;
 	std::shared_ptr<cGRID> grid_;

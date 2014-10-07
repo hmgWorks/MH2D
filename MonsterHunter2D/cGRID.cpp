@@ -31,10 +31,28 @@ cGRID::~cGRID()
 	tilemap_ = nullptr;*/
 }
 
-void cGRID::initMap(std::vector<sMAP_DATA>& data_map)
+void cGRID::initMap(std::vector<std::vector<sMAP_DATA>>& data_map, std::shared_ptr<cGAME_OBJECT>& player)
 {
-	current_map_ = data_map;
-	//current_map_data_ = current_map_[0];
+	maps_ = data_map;
+	current_map_ = maps_[eMAP_NAME::map_jungle];
+	current_map_data_ = current_map_[0];
+
+	std::vector<std::list<std::shared_ptr<cGAME_OBJECT>>> obj_row(current_map_data_.count_x);
+	//
+	limits_grid_ = { 0, 0, current_map_data_.width*current_map_data_.count_x,
+		current_map_data_.height* current_map_data_.count_y };
+	
+	if (player != nullptr)
+		for (int x = 0; x < current_map_[0].count_x; x++)
+			for (int y = 0; y < current_map_[0].count_y; y++)
+				if (current_map_[0].data_grid[y][x] == 'c')
+				{
+					player->setPos({ x* current_map_[0].width, y * current_map_[0].height });
+					player->setCellPos({ x, y });
+					player->setLimits(limits_grid_);
+				}
+
+	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
 }
 
 void cGRID::setMap()
@@ -136,8 +154,13 @@ void cGRID::update(double delta)
 {
 	
 	insertMapObj();
+	
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
-		cMAIN_GAME::getInstance()->resource_->setMapData(eMAP_NAME::map_jungle, current_map_);
+	{
+		maps_[eMAP_NAME::map_jungle] = current_map_;
+		cMAIN_GAME::getInstance()->resource_->setMapData(maps_);
+	}
+
 	/*if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
 		cMAIN_GAME::getInstance()->resource_->saveMapFile(file_name_, *this);
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('P'))
@@ -160,8 +183,8 @@ void cGRID::render()
 	for (int x = 0; x < current_map_[0].count_x; x++)
 		for (int y = 0; y < current_map_[0].count_y; y++)
 		{
-			l = x * current_map_[0].width;// -cMAIN_GAME::getInstance()->camera_->getPostion().x;
-			t = y * current_map_[0].height;// -cMAIN_GAME::getInstance()->camera_->getPostion().y;
+			l = x * current_map_[0].width -cMAIN_GAME::getInstance()->camera_->getPostion().x;
+			t = y * current_map_[0].height -cMAIN_GAME::getInstance()->camera_->getPostion().y;
 			r = l + current_map_[0].width;
 			b = t + current_map_[0].height;
 			if (current_map_[0].data_grid[y][x] == 't')
@@ -176,6 +199,7 @@ void cGRID::render()
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
 				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
 			}
+			//else if (current_map_[])
 			else
 			{
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
@@ -380,8 +404,8 @@ void cGRID::insertMapObj()
 
 	if (cMAIN_GAME::getInstance()->input_->getMouseDown())
 	{
-		int x = (cMAIN_GAME::getInstance()->input_->getMouse().x)/current_map_[0].width;// +cMAIN_GAME::getInstance()->camera_->getPostion().x) / width_;
-		int y = (cMAIN_GAME::getInstance()->input_->getMouse().y)/current_map_[0].height;// +cMAIN_GAME::getInstance()->camera_->getPostion().y) / height_;
+		int x = (cMAIN_GAME::getInstance()->input_->getMouse().x + cMAIN_GAME::getInstance()->camera_->getPostion().x) / current_map_[0].width;
+		int y = (cMAIN_GAME::getInstance()->input_->getMouse().y + cMAIN_GAME::getInstance()->camera_->getPostion().y) / current_map_[0].height;
 		current_map_[0].data_grid[y][x] = map_key_;
 	}
 }

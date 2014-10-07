@@ -30,8 +30,8 @@ public:
 	void saveMapData(std::vector<std::string>& file_names,
 		std::vector<sMAP_DATA>& map);
 	
-	std::vector<sMAP_DATA>& getMapData(eMAP_NAME map_name);
-	void setMapData(eMAP_NAME map_name, std::vector<sMAP_DATA> map_data);
+	std::vector<std::vector<sMAP_DATA>>& getMapData();
+	void setMapData(std::vector<std::vector<sMAP_DATA>> map_data);
 
 private:
 	HINSTANCE hInst_;

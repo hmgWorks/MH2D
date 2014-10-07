@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "stdafx.h"	
 #include "cCAMERA.h"
 
 
@@ -86,7 +86,11 @@ void cCAMERA::setLimit(const RECT& limit)
 	};
 
 }
-void cCAMERA::setTarget(cGAME_OBJECT* target)
+//void cCAMERA::setTarget(cGAME_OBJECT* target)
+//{
+//	target_ = target;
+//}
+void cCAMERA::setTarget(std::shared_ptr<cGAME_OBJECT> target)
 {
 	target_ = target;
 }

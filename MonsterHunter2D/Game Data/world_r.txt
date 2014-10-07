@@ -1,9 +1,0 @@
-30 20 60 20
-world_r.txt
-world_start.txt
-world_t.txt
-none
-none
-none
-none
-none

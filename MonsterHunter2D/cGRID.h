@@ -2,6 +2,7 @@
 #include <list>
 #include "cGAME_OBJECT.h"
 #include "hmg_DATA.h"
+#include <memory>
 //struct sMAP_DATA;
 
 class cGRID
@@ -12,12 +13,7 @@ public:
 
 	void update(double delta);
 	void render();
-	
-	
-	//POINT getPosition(){ return{ pos_x_, pos_y_ }; };
-	//void setPosition(int x, int y){ pos_x_ = x, pos_y_ = y; };
-	
-	
+		
 	void setMap();
 	
 	RECT getGridLimits();
@@ -44,7 +40,9 @@ public:
 	void loadMapData();
 
 	//그리드 다시
-	void initMap(std::vector<sMAP_DATA>& data_map);
+	void initMap(std::vector<std::vector<sMAP_DATA>>& data_map,
+		std::shared_ptr<cGAME_OBJECT>& player);
+
 private:
 	void clearMapTable();
 	void createMapTable();
@@ -61,6 +59,7 @@ private:
 	//cGRID 다시
 	sMAP_DATA current_map_data_;
 	std::vector<sMAP_DATA> current_map_;
-	//std::list<cGAME_OBJECT*>** obj_grid_;
+	std::vector<std::vector<sMAP_DATA>> maps_;
+	std::vector<std::vector<std::list<std::shared_ptr<cGAME_OBJECT>>>> obj_grid_;
 	
 };
