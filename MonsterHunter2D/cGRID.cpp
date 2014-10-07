@@ -37,8 +37,16 @@ void cGRID::initMap(std::vector<std::vector<sMAP_DATA>>& data_map, std::shared_p
 	current_map_ = maps_[eMAP_NAME::map_jungle];
 	current_map_data_ = current_map_[0];
 
+	//tile map
+	if (!obj_grid_.empty())
+		obj_grid_.clear();
+
 	std::vector<std::list<std::shared_ptr<cGAME_OBJECT>>> obj_row(current_map_data_.count_x);
-	//
+	for (int i = 0; i < current_map_data_.count_y; i++)
+	{
+		obj_grid_.push_back(obj_row);
+	}
+
 	limits_grid_ = { 0, 0, current_map_data_.width*current_map_data_.count_x,
 		current_map_data_.height* current_map_data_.count_y };
 	
@@ -49,10 +57,12 @@ void cGRID::initMap(std::vector<std::vector<sMAP_DATA>>& data_map, std::shared_p
 				{
 					player->setPos({ x* current_map_[0].width, y * current_map_[0].height });
 					player->setCellPos({ x, y });
+					obj_grid_[y][x].push_back(player);
 					player->setLimits(limits_grid_);
 				}
-
+	
 	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
+	//cMAIN_GAME::getInstance()->camera_->update(0);
 }
 
 void cGRID::setMap()
@@ -165,14 +175,17 @@ void cGRID::update(double delta)
 		cMAIN_GAME::getInstance()->resource_->saveMapFile(file_name_, *this);
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('P'))
 		cMAIN_GAME::getInstance()->resource_->readMapFile(file_name_, *this);
-
-	for (int i = 0; i < count_y_; i++)
+		*/
+	
+	/*for (int i = 0; i < current_map_data_.count_y; i++)
 	{
-		for (int j = 0; j < count_x_; j++)
+		for (int j = 0; j < current_map_data_.count_x; j++)
 		{
-			if (!tilemap_[j][i].empty())
-				for (auto x : tilemap_[j][i])
+			if (!obj_grid_[i][j].empty())
+				for (auto x : obj_grid_[i][j])
+				{
 					x->update(delta);
+				}
 		}
 	}*/
 }
@@ -183,8 +196,8 @@ void cGRID::render()
 	for (int x = 0; x < current_map_[0].count_x; x++)
 		for (int y = 0; y < current_map_[0].count_y; y++)
 		{
-			l = x * current_map_[0].width -cMAIN_GAME::getInstance()->camera_->getPostion().x;
-			t = y * current_map_[0].height -cMAIN_GAME::getInstance()->camera_->getPostion().y;
+			l = x * current_map_[0].width -cMAIN_GAME::getInstance()->camera_->getPos().x;
+			t = y * current_map_[0].height -cMAIN_GAME::getInstance()->camera_->getPos().y;
 			r = l + current_map_[0].width;
 			b = t + current_map_[0].height;
 			if (current_map_[0].data_grid[y][x] == 't')
@@ -199,13 +212,32 @@ void cGRID::render()
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
 				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
 			}
-			//else if (current_map_[])
+
 			else
 			{
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
 			}
+			if (!obj_grid_[y][x].empty())
+			{
+				for (auto i : obj_grid_[y][x])
+					if (i)
+					{
+					cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(255, 0, 0));
+					cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
+					cMAIN_GAME::getInstance()->renderer_->deleteBrush();
+					}
+			}
 		}
 
+	for (int i = 0; i < current_map_data_.count_y; i++)
+	{
+		for (int j = 0; j < current_map_data_.count_x; j++)
+		{
+			if (!obj_grid_[i][j].empty())
+				for (auto x : obj_grid_[i][j])
+					x->render();
+		}
+	}
 	/*for (int x = 0; x < count_x_; x++)
 		for (int y = 0; y < count_y_; y++)
 		{
@@ -287,16 +319,7 @@ void cGRID::render()
 						cMAIN_GAME::getInstance()->renderer_->deleteBrush();						
 					}
 			}
-		}
-	for (int i = 0; i < count_y_; i++)
-	{
-		for (int j = 0; j < count_x_; j++)
-		{
-			if (!tilemap_[j][i].empty())
-				for (auto x : tilemap_[j][i])
-					x->render();
-		}
-	}*/
+		}	*/
 }
 
 RECT cGRID::getGridLimits()
@@ -336,24 +359,43 @@ void cGRID::initPlayer2(cGAME_OBJECT* object)
 	}*/
 }
 
-void cGRID::setTileMap(cGAME_OBJECT* object)
+//void cGRID::setTileMap(cGAME_OBJECT* object)
+//{
+//	if (object->getCellPos().x != -1)
+//	{		
+//		//remove는 넘겨진 값을 찾아 삭제한다.
+//		obj_grid_[object->getCellPos().x][object->getCellPos().y].remove(object);
+//	}
+//
+//	int x = object->getPos().x /*+ cMAIN_GAME::getInstance()->camera_->getPostion().x)*/ / width_;
+//	int y = object->getPos().y /*+ cMAIN_GAME::getInstance()->camera_->getPostion().y)*/ / height_;
+//	
+//	if (x >= count_x_)
+//		x = count_x_-1;
+//	if (y >= count_y_)
+//		y = count_y_-1;
+//	
+//	object->setCellPos({ x, y });
+//	obj_grid_[x][y].push_back(object);
+//}
+void cGRID::setTileMap(std::shared_ptr<cGAME_OBJECT>& object)
 {
-	//if (object->getCellPos().x != -1)
-	//{		
-	//	//remove는 넘겨진 값을 찾아 삭제한다.
-	//	tilemap_[object->getCellPos().x][object->getCellPos().y].remove(object);	
-	//}
+	if (object->getCellPos().x != -1)
+	{
+		//remove는 넘겨진 값을 찾아 삭제한다.
+		obj_grid_[object->getCellPos().y][object->getCellPos().x].remove(object);
+	}
 
-	//int x = object->getPos().x /*+ cMAIN_GAME::getInstance()->camera_->getPostion().x)*/ / width_;
-	//int y = object->getPos().y /*+ cMAIN_GAME::getInstance()->camera_->getPostion().y)*/ / height_;
-	//
-	//if (x >= count_x_)
-	//	x = count_x_-1;
-	//if (y >= count_y_)
-	//	y = count_y_-1;
-	//
-	//object->setCellPos({ x, y });
-	//tilemap_[x][y].push_back(object);	
+	int x = object->getPos().x / current_map_data_.width;
+	int y = object->getPos().y / current_map_data_.height;
+
+	if (x >= current_map_data_.count_x)
+		x = current_map_data_.count_x - 1;
+	if (y >= current_map_data_.count_y)
+		y = current_map_data_.count_y - 1;
+
+	object->setCellPos({ x, y });
+	obj_grid_[y][x].push_back(object);
 }
 
 void cGRID::clearTileMap()
@@ -404,8 +446,8 @@ void cGRID::insertMapObj()
 
 	if (cMAIN_GAME::getInstance()->input_->getMouseDown())
 	{
-		int x = (cMAIN_GAME::getInstance()->input_->getMouse().x + cMAIN_GAME::getInstance()->camera_->getPostion().x) / current_map_[0].width;
-		int y = (cMAIN_GAME::getInstance()->input_->getMouse().y + cMAIN_GAME::getInstance()->camera_->getPostion().y) / current_map_[0].height;
+		int x = (cMAIN_GAME::getInstance()->input_->getMouse().x + cMAIN_GAME::getInstance()->camera_->getPos().x) / current_map_[0].width;
+		int y = (cMAIN_GAME::getInstance()->input_->getMouse().y + cMAIN_GAME::getInstance()->camera_->getPos().y) / current_map_[0].height;
 		current_map_[0].data_grid[y][x] = map_key_;
 	}
 }

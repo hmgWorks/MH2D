@@ -12,8 +12,8 @@ cPANGGO::cPANGGO(POINT pos, RECT limit)
 {
 	screen_x_ = pos.x;
 	screen_y_ = pos.y;
-	pos_x_ = screen_x_ + cMAIN_GAME::getInstance()->camera_->getPostion().x;
-	pos_y_ = screen_y_ + cMAIN_GAME::getInstance()->camera_->getPostion().y;
+	pos_x_ = screen_x_ + cMAIN_GAME::getInstance()->camera_->getPos().x;
+	pos_y_ = screen_y_ + cMAIN_GAME::getInstance()->camera_->getPos().y;
 
 	hp_ = 100;
 	hp_max_ = 100;
@@ -40,7 +40,7 @@ cPANGGO::~cPANGGO()
 }
 void cPANGGO::update(double delta)
 {	
-	setScreenPos(cMAIN_GAME::getInstance()->camera_->getPostion());
+	setScreenPos(cMAIN_GAME::getInstance()->camera_->getPos());
 	/*if (abs(old_pos_.x - pos_x_) < move_destance_)	
 		func = &cPANGGO::moveLeft;
 	else

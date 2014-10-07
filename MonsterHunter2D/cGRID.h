@@ -31,7 +31,7 @@ public:
 	/*void setCellPos(POINT cell_pos){}
 	POINT getCellPos(){ return{ 0, }; }
 	*/
-	void setTileMap(cGAME_OBJECT* object);
+	void setTileMap(std::shared_ptr<cGAME_OBJECT>& object);
 	void clearTileMap();
 	void initPlayer1(cGAME_OBJECT* object);
 	void initPlayer2(cGAME_OBJECT* object);

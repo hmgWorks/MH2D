@@ -34,6 +34,7 @@ void cSCENE_MAIN::enter()
 
 void cSCENE_MAIN::update(double delta)
 {
+
 	//프로그램 종료
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_ESCAPE))
 		::DestroyWindow(cMAIN_GAME::getInstance()->hWnd_);	
@@ -45,12 +46,10 @@ void cSCENE_MAIN::update(double delta)
 	
 	grid_->update(delta);
 	player_->update(delta);
-	
-	
-	
+	grid_->setTileMap(player_);	
+		
 	cMAIN_GAME::getInstance()->camera_->update(delta);	
 
-	//grid_->setTileMap(player_);
 	//
 	////맵전환 시 객체 정리
 	//if (!v_monster_.empty())
@@ -63,11 +62,11 @@ void cSCENE_MAIN::update(double delta)
 void cSCENE_MAIN::render()
 {
 	grid_->render();
-	player_->render();
+	
 	WCHAR ch[100];
 	wsprintf(ch, L"camera: %d, %d", 
-		cMAIN_GAME::getInstance()->camera_->getPostion().x,
-		cMAIN_GAME::getInstance()->camera_->getPostion().y);
+		cMAIN_GAME::getInstance()->camera_->getPos().x,
+		cMAIN_GAME::getInstance()->camera_->getPos().y);
 	
 	cMAIN_GAME::getInstance()->renderer_->textout(25, 25, L"scene: main");
 	cMAIN_GAME::getInstance()->renderer_->textout(25, 50, ch);

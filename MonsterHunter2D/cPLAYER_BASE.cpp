@@ -38,7 +38,7 @@ void cPLAYER_BASE::update(double delta)
 	
 
 	//½ºÅ©¸° ÁÂÇ¥
-	setScreenPos(cMAIN_GAME::getInstance()->camera_->getPostion());
+	setScreenPos(cMAIN_GAME::getInstance()->camera_->getPos());
 	collision_ = { pos_x_ - 15, pos_y_ - 100, pos_x_ + 15, pos_y_ };
 }
 
@@ -48,10 +48,10 @@ void cPLAYER_BASE::render()
 	wsprintf(ch, L"%d, %d", pos_x_, pos_y_);
 	
 	cMAIN_GAME::getInstance()->renderer_->rectangel(
-		collision_.left - cMAIN_GAME::getInstance()->camera_->getPostion().x,
-		collision_.top - cMAIN_GAME::getInstance()->camera_->getPostion().y,
-		collision_.right - cMAIN_GAME::getInstance()->camera_->getPostion().x,
-		collision_.bottom - cMAIN_GAME::getInstance()->camera_->getPostion().y);
+		collision_.left - cMAIN_GAME::getInstance()->camera_->getPos().x,
+		collision_.top - cMAIN_GAME::getInstance()->camera_->getPos().y,
+		collision_.right - cMAIN_GAME::getInstance()->camera_->getPos().x,
+		collision_.bottom - cMAIN_GAME::getInstance()->camera_->getPos().y);
 	
 	cMAIN_GAME::getInstance()->renderer_->textout(screen_x_, screen_y_, ch);	
 }

@@ -26,11 +26,6 @@ void cCAMERA::initCamera(const RECT& rt)
 	height_ = rt.bottom - rt.top;
 }
 
-POINT cCAMERA::getPostion()
-{
-	return{ pos_x_, pos_y_ }; 
-}
-
 void cCAMERA::update(double delta)
 { 	
 	if (limits_.left == -1)
