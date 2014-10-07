@@ -8,10 +8,10 @@ struct sMAP_DATA
 	int height;
 	int count_x;
 	int count_y;
-	std::string potal_L_filename;
-	std::string potal_T_filename;
-	std::string potal_R_filename;
-	std::string potal_B_filename;
+	int potal_L_filename;
+	int potal_T_filename;
+	int potal_R_filename;
+	int potal_B_filename;
 	std::string floor_img;
 	std::string background_img;
 	std::string background_img2;

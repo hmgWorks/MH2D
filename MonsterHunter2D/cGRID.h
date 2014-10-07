@@ -14,7 +14,7 @@ public:
 	void update(double delta);
 	void render();
 		
-	void setMap();
+	void setMap(std::shared_ptr<cGAME_OBJECT>& obj);
 	
 	RECT getGridLimits();
 	int getWidth(){ return width_; }
@@ -61,5 +61,6 @@ private:
 	std::vector<sMAP_DATA> current_map_;
 	std::vector<std::vector<sMAP_DATA>> maps_;
 	std::vector<std::vector<std::list<std::shared_ptr<cGAME_OBJECT>>>> obj_grid_;
+	int map_data_index_;
 	
 };

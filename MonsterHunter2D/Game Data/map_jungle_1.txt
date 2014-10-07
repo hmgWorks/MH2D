@@ -1,8 +1,8 @@
 30 20 60 20 
-none
-map_jungle_2.txt
-map_jungle_5.txt
-none
+-1
+1
+4
+-1
 none
 none
 none

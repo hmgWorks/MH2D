@@ -7,6 +7,7 @@ cGRID::cGRID()
 {
 	//grid_ = nullptr;
 	map_key_ = '0';
+	map_data_index_ = 0;
 }
 
 cGRID::~cGRID()
@@ -35,7 +36,7 @@ void cGRID::initMap(std::vector<std::vector<sMAP_DATA>>& data_map, std::shared_p
 {
 	maps_ = data_map;
 	current_map_ = maps_[eMAP_NAME::map_jungle];
-	current_map_data_ = current_map_[1];
+	current_map_data_ = current_map_[map_data_index_];
 
 	//tile map
 	if (!obj_grid_.empty())
@@ -64,9 +65,30 @@ void cGRID::initMap(std::vector<std::vector<sMAP_DATA>>& data_map, std::shared_p
 	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
 }
 
-void cGRID::setMap()
+void cGRID::setMap(std::shared_ptr<cGAME_OBJECT>& player)
 {
-	
+	current_map_data_ = current_map_[map_data_index_];
+	if (!obj_grid_.empty())
+		obj_grid_.clear();
+
+	std::vector<std::list<std::shared_ptr<cGAME_OBJECT>>> obj_row(current_map_data_.count_x);
+	for (int i = 0; i < current_map_data_.count_y; i++)
+	{
+		obj_grid_.push_back(obj_row);
+	}
+
+	limits_grid_ = { 0, 0, current_map_data_.width*current_map_data_.count_x,
+		current_map_data_.height* current_map_data_.count_y };
+
+	int x = player->getCellPos().x;
+	int y = player->getCellPos().y;	
+		
+	player->setPos({ x* current_map_data_.width, y * current_map_data_.height });
+	player->setLimits(limits_grid_);
+
+	obj_grid_[y][x].push_back(player);	
+
+	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
 }
 //void cGRID::initGrid(const sMAP_DATA& data)
 ////void cGRID::initGrid(int width, int height, int count_x, int count_y)
@@ -166,7 +188,7 @@ void cGRID::update(double delta)
 	
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
 	{
-		current_map_[1] = current_map_data_;
+		current_map_[map_data_index_] = current_map_data_;
 		maps_[eMAP_NAME::map_jungle] = current_map_;
 		cMAIN_GAME::getInstance()->resource_->setMapData(maps_);
 	}
@@ -273,10 +295,35 @@ void cGRID::render()
 
 void cGRID::checkCollision(std::shared_ptr<cGAME_OBJECT>& obj)
 {
-	//if (current_map_data_.data_grid[obj->getCellPos().x][obj->getCellPos().y] == 'l')
-	//{
-
-	//}
+	if (current_map_data_.data_grid[obj->getCellPos().y][obj->getCellPos().x] == 'l')
+	{
+		map_data_index_ = current_map_data_.potal_L_filename;		
+		int y = obj->getCellPos().y;
+		obj->setCellPos({ current_map_[map_data_index_].count_x - 2, y });
+		setMap(obj);
+	}
+	if (current_map_data_.data_grid[obj->getCellPos().y][obj->getCellPos().x] == 't')
+	{
+		map_data_index_ = current_map_data_.potal_T_filename;
+		int x = obj->getCellPos().x;
+		obj->setCellPos({ x, current_map_[map_data_index_].count_y - 2 });
+		setMap(obj);
+	}
+	if (current_map_data_.data_grid[obj->getCellPos().y][obj->getCellPos().x] == 'r')
+	{
+		map_data_index_ = current_map_data_.potal_R_filename;
+		int y = obj->getCellPos().y;
+		obj->setCellPos({ 1, y });
+		setMap(obj);
+	}
+	if (current_map_data_.data_grid[obj->getCellPos().y][obj->getCellPos().x] == 'b')
+	{
+		map_data_index_ = current_map_data_.potal_B_filename;
+		int x = obj->getCellPos().x;
+		obj->setCellPos({ x, 1 });
+		setMap(obj);
+	}
+	
 }
 RECT cGRID::getGridLimits()
 {

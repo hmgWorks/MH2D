@@ -45,11 +45,11 @@ void cSCENE_MAIN::update(double delta)
 	
 	grid_->update(delta);
 	player_->update(delta);
+	grid_->checkCollision(player_);
 	grid_->setTileMap(player_);	
 		
 	cMAIN_GAME::getInstance()->camera_->update(delta);	
 
-	//grid_->checkCollision(player_);
 	//
 	////맵전환 시 객체 정리
 	//if (!v_monster_.empty())
