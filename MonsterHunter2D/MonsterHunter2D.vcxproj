@@ -92,6 +92,7 @@
     <ClInclude Include="cSCENE_MAIN.h" />
     <ClInclude Include="cSCENE_START.h" />
     <ClInclude Include="cSCENE_TUTO.h" />
+    <ClInclude Include="cSELECT_MAP.h" />
     <ClInclude Include="cSINGLETON.h" />
     <ClInclude Include="cSTATE_IDLE.h" />
     <ClInclude Include="cVECTOR_2D.h" />
@@ -122,6 +123,7 @@
     <ClCompile Include="cSCENE_MAIN.cpp" />
     <ClCompile Include="cSCENE_START.cpp" />
     <ClCompile Include="cSCENE_TUTO.cpp" />
+    <ClCompile Include="cSELECT_MAP.cpp" />
     <ClCompile Include="cSTATE_IDLE.cpp" />
     <ClCompile Include="cVECTOR_2D.cpp" />
     <ClCompile Include="cWEAPONS.cpp" />

@@ -7,6 +7,7 @@ cSCENE_MAIN::cSCENE_MAIN()
 {	
 	grid_ = nullptr;
 	player_ = nullptr;	
+	scene_state_ = eSCENE_STATE::WORLD;	
 }
 cSCENE_MAIN::~cSCENE_MAIN()
 {
@@ -17,8 +18,9 @@ void cSCENE_MAIN::enter()
 {	
 	grid_ = std::make_shared<cGRID>();
 	player_ = std::make_shared<cPLAYER_BASE>();
-	grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(), player_);
-
+	grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(), player_, eMAP_NAME::world);
+	
+	select_map_ = std::make_shared<cSELECT_MAP>();
 	/*
 		플래이어의 위치와 한계의 설정은 그리드에 종속 되어야 함.
 		그리드(맵의)변경시 플래이어의 우치와 한계가 셋팅 돼어야 함.
@@ -43,12 +45,23 @@ void cSCENE_MAIN::update(double delta)
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('W'))
 		cMAIN_GAME::getInstance()->camera_->vibrateSwitch();
 	
-	grid_->update(delta);
-	player_->update(delta);
-	grid_->checkCollision(player_);
-	grid_->setTileMap(player_);	
+	if (scene_state_ == eSCENE_STATE::SELECT)
+	{
+		select_map_->update(delta, scene_state_);		
+		if (scene_state_ == eSCENE_STATE::DUNGEON)
+		{
+			grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(), player_, eMAP_NAME::map_jungle);
+		}
+	}
+	else
+	{
+		grid_->update(delta);
+		player_->update(delta);
+		grid_->checkCollision(player_, this);
+		grid_->setTileMap(player_);	
 		
-	cMAIN_GAME::getInstance()->camera_->update(delta);	
+		cMAIN_GAME::getInstance()->camera_->update(delta);	
+	}
 
 	//
 	////맵전환 시 객체 정리
@@ -61,7 +74,14 @@ void cSCENE_MAIN::update(double delta)
 
 void cSCENE_MAIN::render()
 {
-	grid_->render();
+	if (scene_state_ == eSCENE_STATE::SELECT)
+	{
+		select_map_->render();		
+	}
+	else
+	{
+		grid_->render();
+	}
 	
 	WCHAR ch[100];
 	wsprintf(ch, L"camera: %d, %d", 

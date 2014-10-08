@@ -26,5 +26,13 @@ enum eMAP_DATA
 };
 enum eMAP_NAME
 {
-	map_jungle = 0
+	world = 0,
+	map_jungle
+};
+enum eSCENE_STATE
+{
+	WORLD = 0, 
+	SELECT, 
+	DUNGEON, 
+	END 
 };

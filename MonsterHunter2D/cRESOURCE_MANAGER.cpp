@@ -11,6 +11,9 @@ cRESOURCE_MANAGER::cRESOURCE_MANAGER(HINSTANCE hInst)
 {
 	hInst_ = hInst;
 	
+	map_world_file_names_ = {
+			{ "Game Data/map_world_1.txt" }			
+	};
 	map_jungle_file_names_ = {
 			{ "Game Data/map_jungle_1.txt" },
 			{ "Game Data/map_jungle_2.txt" },
@@ -18,13 +21,17 @@ cRESOURCE_MANAGER::cRESOURCE_MANAGER(HINSTANCE hInst)
 			{ "Game Data/map_jungle_4.txt" },
 			{ "Game Data/map_jungle_5.txt" },
 	};
-	
+
+	loadMapData(map_world_file_names_, map_world_);
 	loadMapData(map_jungle_file_names_, map_jungle_);
+	
+	maps_.push_back(map_world_);
 	maps_.push_back(map_jungle_);
 }
 cRESOURCE_MANAGER::~cRESOURCE_MANAGER()
 {
-	saveMapData(map_jungle_file_names_, maps_[0]);
+	saveMapData(map_world_file_names_, maps_[0]);
+	saveMapData(map_jungle_file_names_, maps_[1]);
 	maps_.clear();
 }
 

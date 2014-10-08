@@ -126,6 +126,9 @@
     <ClInclude Include="hmg_DATA.h">
       <Filter>소스 파일\MAIN GAME</Filter>
     </ClInclude>
+    <ClInclude Include="cSELECT_MAP.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -186,6 +189,9 @@
       <Filter>소스 파일\MAIN GAME\GAME OBJECT</Filter>
     </ClCompile>
     <ClCompile Include="cVECTOR_2D.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cSELECT_MAP.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

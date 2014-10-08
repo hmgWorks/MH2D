@@ -35,8 +35,13 @@ public:
 
 private:
 	HINSTANCE hInst_;
-	std::vector<std::string>map_jungle_file_names_;
+	
+	std::vector<sMAP_DATA> map_world_;
+	std::vector<std::string> map_world_file_names_;
+	
 	std::vector<sMAP_DATA> map_jungle_;
+	std::vector<std::string> map_jungle_file_names_;
+	
 	std::vector<std::vector<sMAP_DATA>> maps_;
 	
 };
