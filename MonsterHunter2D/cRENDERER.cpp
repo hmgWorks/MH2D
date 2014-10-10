@@ -54,6 +54,45 @@ void cRENDERER::deleteBrush()
 	DeleteObject(SelectObject(front_hdc_, oldBr_));
 }
 
+void cRENDERER::drawBitmapBack(int pos_x, int pos_y, HBITMAP hBit, UINT color_key)
+{
+	BITMAP bm;
+	
+	::GetObject(hBit, sizeof(BITMAP), &bm);
+	// backdc (memdc전송용)
+	HDC back_dc = ::CreateCompatibleDC(front_hdc_);
+
+	// backdc에 비트맵 선택(backdc에 비트맵그리기)
+	//--- 배경 비트맵
+	::SelectObject(back_dc, hBit);
+	if (color_key != 0)
+	{
+		::TransparentBlt(
+			front_hdc_,
+			pos_x, pos_y,   //스크린에 뿌릴 x,y 좌표
+			bm.bmWidth, //스크린에 뿌릴 넓이
+			bm.bmHeight,//스크린에 뿌릴 높이
+			back_dc,
+			0, 0,  //소스 의 좌표
+			bm.bmWidth,  //소스의 넓이
+			bm.bmHeight, //소스의 높이
+			color_key);
+		//color_key = rgb(255,255,255)
+	}
+	else
+	{
+		::BitBlt(
+			front_hdc_,
+			pos_x, pos_y,
+			bm.bmWidth,
+			bm.bmHeight,
+			back_dc,
+			0, 0,
+			color_key);
+	}
+
+	::DeleteObject(back_dc);
+}
 /*
 	class cBitmap
 		position

@@ -37,7 +37,7 @@ void cCAMERA::update(double delta)
 	{
 		int temp_x = pos_x_, temp_y = pos_y_;
 		temp_x = target_->getPos().x - (width_ / 2);
-		temp_y = target_->getPos().y - (height_ / 4 * 3);
+		temp_y = target_->getPos().y - (height_ / 5 * 3);
 		
 		if (temp_x <= limits_.left)
 			pos_x_ = limits_.left;

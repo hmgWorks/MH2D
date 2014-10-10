@@ -221,7 +221,7 @@ void cRESOURCE_MANAGER::readMapFile(std::string filename, cGRID& grid)
 
 void cRESOURCE_MANAGER::loadImage(HBITMAP& hImg, int index)
 {
-	 //hImg = (HBITMAP)LoadImage(hInst_, )
+	hImg = (HBITMAP)LoadImage(hInst_, imgFileList_[index], IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 	/*
 			hMyBackBit = (HBITMAP)LoadImage(
 			hInst,

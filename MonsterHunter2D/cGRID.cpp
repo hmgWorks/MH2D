@@ -50,6 +50,7 @@ void cGRID::initMap(std::vector<std::vector<sMAP_DATA>>& data_map,
 			}
 	
 	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
+	cMAIN_GAME::getInstance()->resource_->loadImage(img_, eIMG_LIST::WORLD_BACKGROUND_1);
 }
 
 void cGRID::setMap(std::shared_ptr<cGAME_OBJECT>& player)
@@ -106,6 +107,9 @@ void cGRID::update(double delta)
 
 void cGRID::render()
 {	
+	//test code
+	cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0 - cMAIN_GAME::getInstance()->camera_->getPos().x, 0 - 470 - cMAIN_GAME::getInstance()->camera_->getPos().y, img_, RGB(255, 0, 255));
+	
 	int l, t, r, b;
 	for (int x = 0; x < current_map_data_.count_x; x++)
 		for (int y = 0; y < current_map_data_.count_y; y++)
@@ -138,7 +142,7 @@ void cGRID::render()
 
 			else
 			{
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
+				//cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
 			}
 			if (!obj_grid_[y][x].empty())
 			{
@@ -240,29 +244,7 @@ void cGRID::insertMapObj()
 		map_key_ = 'e';
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('D'))
 		map_key_ = 'd';
-	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('2'))
-	//	map_key_ = '2';
-	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('3'))
-	//	map_key_ = '3';//입구
-	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('4'))
-	//	map_key_ = '4';//출구
-	//
-	//플래이어 시작 위치
-	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('8'))
-	//	map_key_ = '8';
-	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('9'))
-	//	map_key_ = '9';
-
-	////potal
-	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('L'))
-	//	map_key_ = 'l';
-	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('T'))
-	//	map_key_ = 't';
-	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('R'))
-	//	map_key_ = 'r';
-	//if (cMAIN_GAME::getInstance()->input_->getDownKey_once('B'))
-	//	map_key_ = 'b';
-
+	
 	if (cMAIN_GAME::getInstance()->input_->getMouseDown())
 	{
 		int x = (cMAIN_GAME::getInstance()->input_->getMouse().x + cMAIN_GAME::getInstance()->camera_->getPos().x) / current_map_data_.width;

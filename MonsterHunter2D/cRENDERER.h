@@ -15,7 +15,7 @@ public:
 	void deleteBrush();
 	
 	//void drawBitmap(int x, int y, HBITMAP hBit, UINT tColor = 0);
-	//void drawBitmapBack(HBITMAP hBit, int pos_x, int pos_y, UINT color_key = 0);
+	void drawBitmapBack(int pos_x, int pos_y, HBITMAP hBit, UINT color_key = 0);
 	void renderToscreen();
 	HDC getFrontDc(){
 		return front_hdc_;
