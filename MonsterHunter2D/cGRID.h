@@ -36,5 +36,5 @@ private:
 	std::vector<std::vector<std::list<std::shared_ptr<cGAME_OBJECT>>>> obj_grid_;
 	int map_data_index_;
 	int map_name_;
-	
+		
 };

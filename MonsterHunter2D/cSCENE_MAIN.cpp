@@ -16,6 +16,8 @@ cSCENE_MAIN::~cSCENE_MAIN()
 
 void cSCENE_MAIN::enter()
 {	
+	
+
 	grid_ = std::make_shared<cGRID>();
 	player_ = std::make_shared<cPLAYER_BASE>();
 	grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(), player_, eMAP_NAME::world);

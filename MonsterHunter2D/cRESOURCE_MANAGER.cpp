@@ -27,6 +27,10 @@ cRESOURCE_MANAGER::cRESOURCE_MANAGER(HINSTANCE hInst)
 	
 	maps_.push_back(map_world_);
 	maps_.push_back(map_jungle_);
+
+	imgFileList_ = {
+			{ L"Image/world_background_1.bmp" }
+	};
 }
 cRESOURCE_MANAGER::~cRESOURCE_MANAGER()
 {
@@ -215,8 +219,15 @@ void cRESOURCE_MANAGER::readMapFile(std::string filename, cGRID& grid)
 	//ifile.close();
 }
 
-void cRESOURCE_MANAGER::loadImage()
+void cRESOURCE_MANAGER::loadImage(HBITMAP& hImg, int index)
 {
-	//::LoadImage(hInst_,)
+	 //hImg = (HBITMAP)LoadImage(hInst_, )
+	/*
+			hMyBackBit = (HBITMAP)LoadImage(
+			hInst,
+			L"Image/back.bmp",
+			IMAGE_BITMAP, 0, 0,
+			LR_LOADFROMFILE);
+	*/
 }
 

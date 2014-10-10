@@ -36,6 +36,8 @@ private:
 	std::shared_ptr<cGRID> grid_;
 
 	std::shared_ptr<cSELECT_MAP> select_map_;
+
+	
 };
 
 

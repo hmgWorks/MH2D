@@ -36,3 +36,8 @@ enum eSCENE_STATE
 	DUNGEON, 
 	END 
 };
+
+enum eIMG_LIST
+{
+	WORLD_BACKGROUND_1
+};

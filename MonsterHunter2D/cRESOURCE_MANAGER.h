@@ -21,7 +21,6 @@ public:
 
 	void createPlayerFile(std::string filename);
 
-	void loadImage();
 
 	//grid 관련 다시
 	void loadMapData(std::vector<std::string>& file_names, 
@@ -33,6 +32,9 @@ public:
 	std::vector<std::vector<sMAP_DATA>>& getMapData();
 	void setMapData(std::vector<std::vector<sMAP_DATA>> map_data);
 
+	//image
+	void loadImage(HBITMAP& hImg, int index);
+	
 private:
 	HINSTANCE hInst_;
 	
@@ -43,6 +45,9 @@ private:
 	std::vector<std::string> map_jungle_file_names_;
 	
 	std::vector<std::vector<sMAP_DATA>> maps_;
-	
+
+	//bitmap
+	HBITMAP world_background_1_;
+	std::vector<LPCWSTR> imgFileList_;
 };
 
