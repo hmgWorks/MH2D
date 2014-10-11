@@ -80,7 +80,7 @@ void cRENDERER::drawBitmapBack(int pos_x, int pos_y, HBITMAP hBit, UINT color_ke
 		//color_key = rgb(255,255,255)
 	}
 	else
-	{
+	{ 
 		::BitBlt(
 			front_hdc_,
 			pos_x, pos_y,
@@ -88,7 +88,7 @@ void cRENDERER::drawBitmapBack(int pos_x, int pos_y, HBITMAP hBit, UINT color_ke
 			bm.bmHeight,
 			back_dc,
 			0, 0,
-			color_key);
+			SRCCOPY);
 	}
 
 	::DeleteObject(back_dc);

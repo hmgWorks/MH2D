@@ -143,6 +143,12 @@ void cGRID::render()
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
 				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
 			}
+			else if (current_map_data_.data_grid[y][x] == 'x')
+			{
+				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(100, 100, 100));
+				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
+				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
+			}
 
 			else
 			{
@@ -209,6 +215,13 @@ void cGRID::checkCollision(std::shared_ptr<cGAME_OBJECT>& obj, cSCENE_MAIN* scen
 		obj->setCellPos({ x, y });
 		obj->setPos({ x* current_map_data_.width, y * current_map_data_.height });
 	}
+	if (current_map_data_.data_grid[obj->getCellPos().y][obj->getCellPos().x] == 'x')
+	{
+		//map_data_index_ = current_map_data_.potal_R_filename;
+		int y = obj->getCellPos().y;
+		obj->setCellPos({ 1, y });
+		setMap(obj);
+	}
 	
 }
 
@@ -246,8 +259,12 @@ void cGRID::insertMapObj()
 		map_key_ = 'b';
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('E'))
 		map_key_ = 'e';
+	//던전입구
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('D'))
 		map_key_ = 'd';
+	//못가는곳
+	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('X'))
+		map_key_ = 'x';
 	
 	if (cMAIN_GAME::getInstance()->input_->getMouseDown())
 	{

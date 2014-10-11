@@ -30,7 +30,11 @@ cRESOURCE_MANAGER::cRESOURCE_MANAGER(HINSTANCE hInst)
 
 	imgFileList_ = {
 			{ L"Image/world_background_1.bmp" },
-			{ L"Image/world_floor_1.bmp" }
+			{ L"Image/world_floor_1.bmp" },
+			{ L"Image/intro_teile.bmp" },
+			{ L"Image/intro_button_play.bmp" },
+			{ L"Image/intro_button_continue.bmp" },
+			{ L"Image/intro_button_exit.bmp" }
 	};
 }
 cRESOURCE_MANAGER::~cRESOURCE_MANAGER()

@@ -18,6 +18,11 @@ public:
 
 private:
 	//cPLAYER_BASE* player_;
-	
+	HBITMAP intro_title_;
+	HBITMAP intro_button_play_;
+	HBITMAP intro_button_continue_;
+	HBITMAP intro_button_exit_;
+
+	int state_;
 };
 
