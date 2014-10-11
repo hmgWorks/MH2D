@@ -50,7 +50,8 @@ void cGRID::initMap(std::vector<std::vector<sMAP_DATA>>& data_map,
 			}
 	
 	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
-	cMAIN_GAME::getInstance()->resource_->loadImage(img_, eIMG_LIST::WORLD_BACKGROUND_1);
+	cMAIN_GAME::getInstance()->resource_->loadImage(world_background_1_, eIMG_LIST::WORLD_BACKGROUND_1);
+	cMAIN_GAME::getInstance()->resource_->loadImage(world_floor_1_, eIMG_LIST::WORLD_FLOOR_1);
 }
 
 void cGRID::setMap(std::shared_ptr<cGAME_OBJECT>& player)
@@ -108,8 +109,11 @@ void cGRID::update(double delta)
 void cGRID::render()
 {	
 	//test code
-	cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0 - cMAIN_GAME::getInstance()->camera_->getPos().x, 0 - 470 - cMAIN_GAME::getInstance()->camera_->getPos().y, img_, RGB(255, 0, 255));
-	
+	cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0 - cMAIN_GAME::getInstance()->camera_->getPos().x, 
+		0 - 10 - cMAIN_GAME::getInstance()->camera_->getPos().y, world_floor_1_, RGB(255, 0, 255));
+	cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0 - cMAIN_GAME::getInstance()->camera_->getPos().x, 
+		0 - 470 - cMAIN_GAME::getInstance()->camera_->getPos().y, world_background_1_, RGB(255, 0, 255));
+		
 	int l, t, r, b;
 	for (int x = 0; x < current_map_data_.count_x; x++)
 		for (int y = 0; y < current_map_data_.count_y; y++)

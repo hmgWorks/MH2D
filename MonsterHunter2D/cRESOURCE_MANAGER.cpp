@@ -29,7 +29,8 @@ cRESOURCE_MANAGER::cRESOURCE_MANAGER(HINSTANCE hInst)
 	maps_.push_back(map_jungle_);
 
 	imgFileList_ = {
-			{ L"Image/world_background_1.bmp" }
+			{ L"Image/world_background_1.bmp" },
+			{ L"Image/world_floor_1.bmp" }
 	};
 }
 cRESOURCE_MANAGER::~cRESOURCE_MANAGER()
@@ -65,11 +66,13 @@ void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
 				{
 					char ch;
 					ifile >> ch;
+					//ch = '0';
 					data_row.push_back(ch);
 				}
 				data_.data_grid.push_back(data_row);
 				data_row.clear();
 			}
+			//data_.data_grid[1][1] = 'c';
 			map.push_back(data_);
 		}
 		ifile.close();

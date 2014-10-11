@@ -37,6 +37,7 @@ private:
 	int map_data_index_;
 	int map_name_;
 
-	HBITMAP img_;
+	HBITMAP world_background_1_;
+	HBITMAP world_floor_1_;
 		
 };
