@@ -12,7 +12,7 @@ cMAIN_GAME::cMAIN_GAME()
 
 	scene_map_.insert({ SCENE_ID::INTRO, shared_scene(new cSCENE_INTRO) });
 	scene_map_.insert({ SCENE_ID::START, shared_scene(new cSCENE_START) });
-	scene_map_.insert({ SCENE_ID::TUTO, shared_scene(new cSCENE_TUTO) });
+	//scene_map_.insert({ SCENE_ID::TUTO, shared_scene(new cSCENE_TUTO) });
 	scene_map_.insert({ SCENE_ID::MAIN, shared_scene(new cSCENE_MAIN) });
 	 
 }

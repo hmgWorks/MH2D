@@ -2,6 +2,8 @@
 #include <string>
 #include "iSCENE_BASE.h"
 #include "cMAIN_GAME.h"
+
+#define ID_EIDT 101
 class cSCENE_START :
 	public iSCENE_BASE
 {
@@ -19,5 +21,9 @@ public:
 private:
 	std::string path_ = "player\\";
 	std::string player_name_ = "hmg";
+
+	int left_, top_;
+	int width_, height_;
+	HWND edit_;
 };
 

@@ -35,6 +35,8 @@ public:
 	//image
 	void loadImage(HBITMAP& hImg, int index);
 	
+	
+	WCHAR hunter_name_[128];
 private:
 	HINSTANCE hInst_;
 	
@@ -49,5 +51,6 @@ private:
 	//bitmap
 	HBITMAP world_background_1_;
 	std::vector<LPCWSTR> imgFileList_;
+
 };
 
