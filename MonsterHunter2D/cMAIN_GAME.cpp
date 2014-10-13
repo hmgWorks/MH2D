@@ -2,6 +2,7 @@
 #include "cMAIN_GAME.h"
 
 cMAIN_GAME::cMAIN_GAME()
+	:screen_width_(1024), screen_height_(768)
 {
 	input_ = unique_input(new cINPUT_MANAGER);
 	resource_ = unique_resource(new cRESOURCE_MANAGER(hInst_));
@@ -23,11 +24,11 @@ cMAIN_GAME::~cMAIN_GAME()
 
 //화면 사이즈 지정
 HWND cMAIN_GAME::createGameWindow(LPCWSTR sz_window_class, LPCWSTR sz_tile, HINSTANCE& inst)
-{
-	RECT rt = { 0, 0, 1024, 768 };
-	::AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, TRUE);
-	return ::CreateWindow(sz_window_class, sz_tile, WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, 0, rt.right - rt.left, rt.bottom - rt.top, NULL, NULL, inst, NULL);
+{	
+	fullScreen(screen_width_, screen_height_);
+	//::AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, TRUE);
+	return ::CreateWindow(sz_window_class, sz_tile, WS_POPUP,
+		CW_USEDEFAULT, 0, client_rt_.right - client_rt_.left, client_rt_.bottom - client_rt_.top, NULL, NULL, inst, NULL);
 }
 void cMAIN_GAME::enter(HWND hWnd, HINSTANCE hInst)
 {
@@ -41,6 +42,17 @@ void cMAIN_GAME::enter(HWND hWnd, HINSTANCE hInst)
 }
 void cMAIN_GAME::update()
 {
+	if (input_->getDownKey_once(VK_F1))
+	{		
+		fullScreen(screen_width_, screen_height_);				
+	}
+	if (input_->getDownKey_once(VK_F2))
+	{
+		::ChangeDisplaySettings(NULL, 0);
+		::SetWindowLongPtr(hWnd_, GWL_STYLE, WS_OVERLAPPEDWINDOW);
+		::SetWindowPos(hWnd_, HWND_TOP, 0, 0,screen_width_, screen_height_,	SWP_SHOWWINDOW);
+	}
+
 	current_scene_->update(30.0 / 1000.0);
 }
 void cMAIN_GAME::render(HDC hdc)
@@ -70,4 +82,24 @@ void cMAIN_GAME::changeScene(SCENE_ID id)
 	current_scene_->exit();
 	current_scene_ = scene_map_.find(id)->second;
 	current_scene_->enter();	
+}
+
+void cMAIN_GAME::fullScreen(int width, int height)
+{
+
+	DEVMODE sDevMode;
+	sDevMode.dmSize = sizeof(DEVMODE);
+	sDevMode.dmPelsWidth = width;
+	sDevMode.dmPelsHeight = height;
+	sDevMode.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT;
+	::ChangeDisplaySettings(&sDevMode, CDS_FULLSCREEN);	
+	
+	::SetWindowLongPtr(hWnd_, GWL_STYLE, WS_POPUP);
+	::SetWindowPos(hWnd_, HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
+	
+	SetRect(&client_rt_, 0, 0, width, height);
+	
+	AdjustWindowRect(&client_rt_, WS_BORDER, FALSE);
+	SetWindowPos(hWnd_, HWND_TOP, 0, 0, client_rt_.right - client_rt_.left,
+		client_rt_.bottom - client_rt_.top, SWP_SHOWWINDOW);
 }

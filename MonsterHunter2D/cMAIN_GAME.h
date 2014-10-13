@@ -52,9 +52,12 @@ private:
 	scene_map scene_map_;
 
 	//screen
+	//원하는 화면 크기
+	//int width_, height_;
 	int screen_width_;
 	int screen_height_;
 
+	void fullScreen(int width, int height);
 public:	
 	HWND createGameWindow(LPCWSTR sz_window_class, LPCWSTR sz_tile, HINSTANCE& inst);
 	void enter(HWND hWnd, HINSTANCE hInst);
