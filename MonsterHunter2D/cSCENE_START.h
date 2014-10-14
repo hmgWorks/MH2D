@@ -4,6 +4,7 @@
 #include "cMAIN_GAME.h"
 
 #define ID_EIDT 101
+#define ID_BUTTON 102
 class cSCENE_START :
 	public iSCENE_BASE
 {
@@ -24,6 +25,8 @@ private:
 
 	int left_, top_;
 	int width_, height_;
-	HWND edit_;
+	HWND edit_, button_;
+	WCHAR buf[100];
+
 };
 

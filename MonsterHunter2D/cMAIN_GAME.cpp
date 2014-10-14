@@ -43,15 +43,10 @@ void cMAIN_GAME::enter(HWND hWnd, HINSTANCE hInst)
 void cMAIN_GAME::update()
 {
 	if (input_->getDownKey_once(VK_F1))
-	{		
 		fullScreen(screen_width_, screen_height_);				
-	}
+	
 	if (input_->getDownKey_once(VK_F2))
-	{
-		::ChangeDisplaySettings(NULL, 0);
-		::SetWindowLongPtr(hWnd_, GWL_STYLE, WS_OVERLAPPEDWINDOW);
-		::SetWindowPos(hWnd_, HWND_TOP, 0, 0,screen_width_, screen_height_,	SWP_SHOWWINDOW);
-	}
+		windowMode();
 
 	current_scene_->update(30.0 / 1000.0);
 }
@@ -102,4 +97,10 @@ void cMAIN_GAME::fullScreen(int width, int height)
 	AdjustWindowRect(&client_rt_, WS_BORDER, FALSE);
 	SetWindowPos(hWnd_, HWND_TOP, 0, 0, client_rt_.right - client_rt_.left,
 		client_rt_.bottom - client_rt_.top, SWP_SHOWWINDOW);
+}
+void cMAIN_GAME::windowMode()
+{
+	::ChangeDisplaySettings(NULL, 0);
+	::SetWindowLongPtr(hWnd_, GWL_STYLE, WS_OVERLAPPEDWINDOW);
+	::SetWindowPos(hWnd_, HWND_TOP, 0, 0, screen_width_, screen_height_, SWP_SHOWWINDOW);
 }

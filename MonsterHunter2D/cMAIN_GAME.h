@@ -58,6 +58,7 @@ private:
 	int screen_height_;
 
 	void fullScreen(int width, int height);
+	void windowMode();
 public:	
 	HWND createGameWindow(LPCWSTR sz_window_class, LPCWSTR sz_tile, HINSTANCE& inst);
 	void enter(HWND hWnd, HINSTANCE hInst);

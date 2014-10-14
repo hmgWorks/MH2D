@@ -52,5 +52,6 @@ private:
 	HBITMAP world_background_1_;
 	std::vector<LPCWSTR> imgFileList_;
 
+
 };
 

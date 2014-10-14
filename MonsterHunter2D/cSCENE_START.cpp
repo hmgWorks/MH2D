@@ -8,6 +8,7 @@ cSCENE_START::cSCENE_START()
 	top_ = 330;
 	width_ = 400;
 	height_ = 200;
+	memset(buf, 0, lstrlen(buf));
 }
 cSCENE_START::~cSCENE_START()
 {
@@ -15,18 +16,26 @@ cSCENE_START::~cSCENE_START()
 
 void cSCENE_START::enter()
 {
-	edit_ = ::CreateWindow(L"edit", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_CENTER
-		, left_ + 100, top_ + 100, 200, 25, cMAIN_GAME::getInstance()->hWnd_, (HMENU)ID_EIDT, cMAIN_GAME::getInstance()->hInst_, NULL);
+	edit_ = ::CreateWindow(L"edit", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_CENTER,
+		left_ + 100, top_ + 100, 200, 25, cMAIN_GAME::getInstance()->hWnd_, (HMENU)ID_EIDT, cMAIN_GAME::getInstance()->hInst_, NULL);
+
+	button_ = ::CreateWindow(L"button", L"확 인", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+		left_ + 100, top_ + 150, 200, 25, cMAIN_GAME::getInstance()->hWnd_, (HMENU)ID_BUTTON, cMAIN_GAME::getInstance()->hInst_, NULL);
 }
 
 void cSCENE_START::update(double delta)
-{
+{	
 	//종료키
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_ESCAPE))
 		::DestroyWindow(cMAIN_GAME::getInstance()->hWnd_);
 	
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_RETURN))
-	cMAIN_GAME::getInstance()->changeScene(SCENE_ID::MAIN);
+	{
+		if (::GetWindowTextLength(edit_))
+			
+		::GetWindowText(edit_, buf, 100);
+		//cMAIN_GAME::getInstance()->changeScene(SCENE_ID::MAIN);
+	}
 	
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_BACK))
 	cMAIN_GAME::getInstance()->changeScene(SCENE_ID::INTRO);
@@ -35,11 +44,12 @@ void cSCENE_START::update(double delta)
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(0x41))
 		createPlayer();
 
-	if (cMAIN_GAME::getInstance()->input_->getMouseDown())
-	{
-		left_ = cMAIN_GAME::getInstance()->input_->getMouse().x;
-		top_ = cMAIN_GAME::getInstance()->input_->getMouse().y;
-	}
+	//if (cMAIN_GAME::getInstance()->input_->getMouseDown())
+	//{
+	//	left_ = cMAIN_GAME::getInstance()->input_->getMouse().x;
+	//	top_ = cMAIN_GAME::getInstance()->input_->getMouse().y;
+	//}
+
 }
 
 void cSCENE_START::render()
@@ -51,6 +61,7 @@ void cSCENE_START::render()
 	//cMAIN_GAME::getInstance()->renderer_->textout(left_, top_, ch);
 //	cMAIN_GAME::getInstance()->renderer_->textout(490, 335, cMAIN_GAME::getInstance()->resource_->hunter_name_);
 	
+	cMAIN_GAME::getInstance()->renderer_->textout(25, 50, buf);
 	cMAIN_GAME::getInstance()->renderer_->textout(25, 25, L"scene: start");	
 }
 
