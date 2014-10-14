@@ -23,10 +23,22 @@ private:
 	std::string path_ = "player\\";
 	std::string player_name_ = "hmg";
 
-	int left_, top_;
-	int width_, height_;
+
+	POINT create_button_pos_;
+	int create_button_w_, create_button_h_;
+	BOOL create_button_;
+
+	POINT input_name_window_pos_;
+	int input_name_window_w_, input_name_window_h_;
+
 	HWND edit_, button_;
-	WCHAR buf[100];
+	//WCHAR buf[100];
+
+	int l, t, r, b;
+	RECT draw_window_;
+
+	HBITMAP start_bg_;
+	
 
 };
 

@@ -34,7 +34,7 @@ public:
 
 	//image
 	void loadImage(HBITMAP& hImg, int index);
-	
+	void loadImage(HBITMAP& hImg, WCHAR* img_name);
 	
 	WCHAR hunter_name_[128];
 private:

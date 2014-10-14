@@ -13,10 +13,22 @@ cSCENE_INTRO::~cSCENE_INTRO()
 
 void cSCENE_INTRO::enter()
 {
-	cMAIN_GAME::getInstance()->resource_->loadImage(intro_title_, eIMG_LIST::INTRO_TITLE);
-	cMAIN_GAME::getInstance()->resource_->loadImage(intro_button_play_, eIMG_LIST::INTRO_PLAY);
-	cMAIN_GAME::getInstance()->resource_->loadImage(intro_button_continue_, eIMG_LIST::INTRO_CONTINUE);
-	cMAIN_GAME::getInstance()->resource_->loadImage(intro_button_exit_, eIMG_LIST::INTRO_EXIT);
+	//imgFileList_ = {
+	//		{ L"Image/world_background_1.bmp" },
+	//		{ L"Image/world_floor_1.bmp" },
+	//		{ L"Image/intro_teile.bmp" },
+	//		{ L"Image/intro_button_play.bmp" },
+	//		{ L"Image/intro_button_continue.bmp" },
+	//		{ L"Image/intro_button_exit.bmp" }
+	//};
+	//cMAIN_GAME::getInstance()->resource_->loadImage(intro_title_, eIMG_LIST::INTRO_TITLE);
+	//cMAIN_GAME::getInstance()->resource_->loadImage(intro_button_play_, eIMG_LIST::INTRO_PLAY);
+	//cMAIN_GAME::getInstance()->resource_->loadImage(intro_button_continue_, eIMG_LIST::INTRO_CONTINUE);
+	//cMAIN_GAME::getInstance()->resource_->loadImage(intro_button_exit_, eIMG_LIST::INTRO_EXIT);
+	cMAIN_GAME::getInstance()->resource_->loadImage(intro_title_, L"Image/intro_teile.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(intro_button_play_, L"Image/intro_button_play.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(intro_button_continue_, L"Image/intro_button_continue.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(intro_button_exit_, L"Image/intro_button_exit.bmp");
 }
 
 void cSCENE_INTRO::update(double delta)

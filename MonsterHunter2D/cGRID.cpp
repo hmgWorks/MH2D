@@ -266,10 +266,10 @@ void cGRID::insertMapObj()
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('X'))
 		map_key_ = 'x';
 	
-	if (cMAIN_GAME::getInstance()->input_->getMouseDown())
+	if (cMAIN_GAME::getInstance()->input_->isMouseDown())
 	{
-		int x = (cMAIN_GAME::getInstance()->input_->getMouse().x + cMAIN_GAME::getInstance()->camera_->getPos().x) / current_map_data_.width;
-		int y = (cMAIN_GAME::getInstance()->input_->getMouse().y + cMAIN_GAME::getInstance()->camera_->getPos().y) / current_map_data_.height;
+		int x = (cMAIN_GAME::getInstance()->input_->getMousePos().x + cMAIN_GAME::getInstance()->camera_->getPos().x) / current_map_data_.width;
+		int y = (cMAIN_GAME::getInstance()->input_->getMousePos().y + cMAIN_GAME::getInstance()->camera_->getPos().y) / current_map_data_.height;
 		current_map_data_.data_grid[y][x] = map_key_;
 	}
 }

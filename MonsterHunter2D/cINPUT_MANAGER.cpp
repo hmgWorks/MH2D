@@ -43,7 +43,7 @@ BOOL cINPUT_MANAGER::getDownKey_once(WPARAM dw_key)
 	return FALSE;
 }
 
-void cINPUT_MANAGER::setMouse(LPARAM mousePos)
+void cINPUT_MANAGER::setMousePos(LPARAM mousePos)
 {
 	mouse_position_.x = LOWORD(mousePos);
 	mouse_position_.y = HIWORD(mousePos);

@@ -237,4 +237,8 @@ void cRESOURCE_MANAGER::loadImage(HBITMAP& hImg, int index)
 			LR_LOADFROMFILE);
 	*/
 }
+void cRESOURCE_MANAGER::loadImage(HBITMAP& hImg, WCHAR* img_name)
+{
+	hImg = (HBITMAP)LoadImage(hInst_, img_name, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+}
 

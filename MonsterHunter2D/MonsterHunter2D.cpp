@@ -151,14 +151,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		main_game_->input_->KeyUp(wParam);
 		break;
 	case WM_LBUTTONDOWN:
-		main_game_->input_->setMouse(lParam);
+		main_game_->input_->setMousePos(lParam);
 		main_game_->input_->mouseDown();
 		break;
 	case WM_LBUTTONUP:
+		main_game_->input_->setMousePos(lParam);
 		main_game_->input_->mouseUp();
 		break;
 	case WM_MOUSEMOVE:
-		main_game_->input_->setMouse(lParam);
+		main_game_->input_->setMousePos(lParam);
 		break;
 	
 	case WM_COMMAND:
@@ -166,8 +167,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		wmEvent = HIWORD(wParam);
 		// 메뉴 선택을 구문 분석합니다.
 		switch (wmId)
-		{
-		
+		{		
 		case IDM_ABOUT:
 			DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
 			break;
