@@ -39,7 +39,12 @@ cGRID::~cGRID()
 
 void cGRID::initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name)
 {
+	map_data_index_ = 0;
 	map_name_ = map_name;
+
+	if (!current_map_.empty())
+		current_map_.clear();
+
 	cMAIN_GAME::getInstance()->resource_->loadMapData(map_files_[map_name_], current_map_);
 	current_map_data_ = current_map_[map_data_index_];
 
@@ -71,9 +76,12 @@ void cGRID::initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name)
 			}
 
 	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
-
-	cMAIN_GAME::getInstance()->resource_->loadImage(world_background_1_, bg_img_maps_[map_name_][current_map_data_.background_img]);
-	cMAIN_GAME::getInstance()->resource_->loadImage(world_floor_1_, bg_img_maps_[map_name_][current_map_data_.floor_img]);
+	
+	if (map_name_ == 0)
+	{
+		cMAIN_GAME::getInstance()->resource_->loadImage(world_background_1_, bg_img_maps_[map_name_][current_map_data_.background_img]);
+		cMAIN_GAME::getInstance()->resource_->loadImage(world_floor_1_, bg_img_maps_[map_name_][current_map_data_.floor_img]);
+	}
 }
 
 void cGRID::setMap(std::shared_ptr<cGAME_OBJECT>& player)
@@ -111,9 +119,7 @@ void cGRID::update(double delta)
 	{		
 		cMAIN_GAME::getInstance()->resource_->saveMapData(map_files_[map_name_][map_data_index_], 
 			current_map_data_);		
-	}
-
-		
+	}		
 	/*for (int i = 0; i < current_map_data_.count_y; i++)
 	{
 		for (int j = 0; j < current_map_data_.count_x; j++)
@@ -130,10 +136,13 @@ void cGRID::update(double delta)
 void cGRID::render()
 {	
 	//test code
-	cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0 - cMAIN_GAME::getInstance()->camera_->getPos().x, 
-		0 - 10 - cMAIN_GAME::getInstance()->camera_->getPos().y, world_floor_1_, RGB(255, 0, 255));
-	cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0 - cMAIN_GAME::getInstance()->camera_->getPos().x, 
-		0 - 470 - cMAIN_GAME::getInstance()->camera_->getPos().y, world_background_1_, RGB(255, 0, 255));
+	if (map_name_ == 0)
+	{
+		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0 - cMAIN_GAME::getInstance()->camera_->getPos().x, 
+			0 - 10 - cMAIN_GAME::getInstance()->camera_->getPos().y, world_floor_1_, RGB(255, 0, 255));
+		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0 - cMAIN_GAME::getInstance()->camera_->getPos().x, 
+			0 - 470 - cMAIN_GAME::getInstance()->camera_->getPos().y, world_background_1_, RGB(255, 0, 255));
+	}
 		
 	int l, t, r, b;
 	for (int x = 0; x < current_map_data_.count_x; x++)
@@ -173,7 +182,7 @@ void cGRID::render()
 
 			else
 			{
-				//cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
+				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
 			}
 			if (!obj_grid_[y][x].empty())
 			{
