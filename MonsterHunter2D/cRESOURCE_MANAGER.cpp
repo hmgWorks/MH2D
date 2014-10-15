@@ -60,9 +60,9 @@ void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
 				>> data_.potal_T_filename
 				>> data_.potal_R_filename
 				>> data_.potal_B_filename
-				>> data_.floor_img
 				>> data_.background_img
-				>> data_.background_img2;
+				>> data_.background_img2
+				>> data_.floor_img;
 			for (int y = 0; y < data_.count_y; y++)
 			{
 				std::vector<char> data_row;
@@ -102,9 +102,9 @@ void cRESOURCE_MANAGER::saveMapData(std::vector<std::string>& file_names,
 				<< data_.potal_T_filename << std::endl
 				<< data_.potal_R_filename << std::endl
 				<< data_.potal_B_filename << std::endl
-				<< data_.floor_img << std::endl
 				<< data_.background_img << std::endl
-				<< data_.background_img2 << std::endl;
+				<< data_.background_img2 << std::endl
+				<< data_.floor_img << std::endl;
 		
 				for (auto col : data_.data_grid)
 				{

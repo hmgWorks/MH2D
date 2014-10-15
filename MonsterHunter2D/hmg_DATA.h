@@ -12,9 +12,9 @@ struct sMAP_DATA
 	int potal_T_filename;
 	int potal_R_filename;
 	int potal_B_filename;
-	std::string floor_img;
-	std::string background_img;
-	std::string background_img2;
+	int background_img;
+	int background_img2;
+	int floor_img;
 	std::vector<std::vector<char>> data_grid;
 };
 
@@ -46,3 +46,4 @@ enum eIMG_LIST
 	INTRO_CONTINUE,
 	INTRO_EXIT
 };
+

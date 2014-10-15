@@ -39,5 +39,8 @@ private:
 
 	HBITMAP world_background_1_;
 	HBITMAP world_floor_1_;
+	std::vector<WCHAR*> bg_imgs_world_;
+	std::vector<WCHAR*> bg_imgs_jungle_;
+	std::vector<std::vector<WCHAR*>> bg_img_maps_;
 		
 };

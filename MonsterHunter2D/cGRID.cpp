@@ -7,6 +7,13 @@ cGRID::cGRID()
 {
 	map_key_ = '0';
 	map_data_index_ = 0;
+
+	bg_imgs_world_= {
+			{ L"Image/world_background_1.bmp" },
+			{ L"Image/world_floor_1.bmp" }		
+	};
+	
+	bg_img_maps_.push_back(bg_imgs_world_);
 }
 
 cGRID::~cGRID()
@@ -50,8 +57,9 @@ void cGRID::initMap(std::vector<std::vector<sMAP_DATA>>& data_map,
 			}
 	
 	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
-	cMAIN_GAME::getInstance()->resource_->loadImage(world_background_1_, eIMG_LIST::WORLD_BACKGROUND_1);
-	cMAIN_GAME::getInstance()->resource_->loadImage(world_floor_1_, eIMG_LIST::WORLD_FLOOR_1);
+
+	cMAIN_GAME::getInstance()->resource_->loadImage(world_background_1_, bg_img_maps_[map_name_][current_map_data_.background_img]);
+	cMAIN_GAME::getInstance()->resource_->loadImage(world_floor_1_, bg_img_maps_[map_name_][current_map_data_.floor_img]);
 }
 
 void cGRID::setMap(std::shared_ptr<cGAME_OBJECT>& player)
