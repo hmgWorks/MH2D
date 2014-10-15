@@ -9,7 +9,8 @@ cSCENE_START::cSCENE_START()
 	r = 0;
 	b = 0;
 	draw_window_ = { 0, 0, 0, 0 };
-
+	button_state_ = 0;
+	popup_window_ = FALSE;
 	//memset(buf, 0, lstrlen(buf));
 }
 cSCENE_START::~cSCENE_START()
@@ -19,11 +20,14 @@ cSCENE_START::~cSCENE_START()
 void cSCENE_START::enter()
 {
 	cMAIN_GAME::getInstance()->resource_->loadImage(start_bg_, L"Image/set_name.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(start_button1_, L"Image/start_button1.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(start_button2_, L"Image/start_button2.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(start_popup_, L"Image/start_popup.bmp");
 	//edit_ = ::CreateWindow(L"edit", NULL, WS_CHILD | /*WS_VISIBLE |*/ WS_BORDER | ES_CENTER,
-	//	left_ + 100, top_ + 100, 200, 25, cMAIN_GAME::getInstance()->hWnd_, (HMENU)ID_EIDT, cMAIN_GAME::getInstance()->hInst_, NULL);
+	//	375, 395, 200, 25, cMAIN_GAME::getInstance()->hWnd_, (HMENU)ID_EIDT, cMAIN_GAME::getInstance()->hInst_, NULL);
 
-	//button_ = ::CreateWindow(L"button", L"확 인", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
-	//	left_ + 100, top_ + 150, 200, 25, cMAIN_GAME::getInstance()->hWnd_, (HMENU)ID_BUTTON, cMAIN_GAME::getInstance()->hInst_, NULL);
+	//button_ = ::CreateWindow(L"button", L"확 인", WS_CHILD | /*WS_VISIBLE |*/ BS_PUSHBUTTON,
+	//	365, 450, 200, 25, cMAIN_GAME::getInstance()->hWnd_, (HMENU)ID_BUTTON, cMAIN_GAME::getInstance()->hInst_, NULL);
 }
 
 void cSCENE_START::update(double delta)
@@ -33,9 +37,19 @@ void cSCENE_START::update(double delta)
 		::DestroyWindow(cMAIN_GAME::getInstance()->hWnd_);
 	
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_RETURN))
-		//::ShowWindow(edit_, SW_SHOW);
-		
-	
+	{
+		if (button_state_ == 0)
+		{
+			popup_window_ = TRUE;
+
+			//ShowWindow(edit_, SW_SHOW);
+			//ShowWindow(button_, SW_SHOW);
+		}
+		else
+		{
+			cMAIN_GAME::getInstance()->changeScene(SCENE_ID::MAIN);
+		}
+	}
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_BACK))
 	cMAIN_GAME::getInstance()->changeScene(SCENE_ID::INTRO);
 
@@ -51,17 +65,23 @@ void cSCENE_START::update(double delta)
 		l = cMAIN_GAME::getInstance()->input_->getMousePos().x;
 		t = cMAIN_GAME::getInstance()->input_->getMousePos().y;		
 	}
-	//
-	//if (!cMAIN_GAME::getInstance()->input_->isMouseDown() && draw_st_)
-	//{
-	//	r = cMAIN_GAME::getInstance()->input_->getMousePos().x;
-	//	b = cMAIN_GAME::getInstance()->input_->getMousePos().y;
-	//	draw_window_.left = l;
-	//	draw_window_.top = t;
-	//	draw_window_.right = r;
-	//	draw_window_.bottom = b;		
-	//}	
 
+	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_DOWN)
+		|| cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_RIGHT))
+	{
+		if (button_state_ < 1)
+			button_state_++;
+		else
+			button_state_ = 0;
+	}
+	if (cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_UP)
+		|| cMAIN_GAME::getInstance()->input_->getDownKey_once(VK_LEFT))
+	{
+		if (button_state_ > 0)
+			button_state_--;
+		else
+			button_state_ = 1;
+	}
 }
 
 void cSCENE_START::render()
@@ -74,8 +94,20 @@ void cSCENE_START::render()
 //	cMAIN_GAME::getInstance()->renderer_->textout(490, 335, cMAIN_GAME::getInstance()->resource_->hunter_name_);
 	
 	cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0, 0, start_bg_);
-	
 
+	switch (button_state_)
+	{
+	case 0:
+		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(215, 647, start_button1_);
+		break;
+	case 1:
+		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(559, 646, start_button2_);
+		break;	
+	}
+
+	/*if (popup_window_)
+		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(300, 290, start_popup_);*/
+	//cMAIN_GAME::getInstance()->renderer_->textout(25, 70, cMAIN_GAME::getInstance()->input_->buf_);
 	cMAIN_GAME::getInstance()->renderer_->textout(25, 50, ch);
 	cMAIN_GAME::getInstance()->renderer_->textout(25, 25, L"scene: start");	
 }

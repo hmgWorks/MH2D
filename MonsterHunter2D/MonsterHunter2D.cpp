@@ -161,7 +161,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_MOUSEMOVE:
 		main_game_->input_->setMousePos(lParam);
 		break;
-	
+	case WM_CHAR:
+		//main_game_->input_->setChar(wParam);		
+		break;
 	case WM_COMMAND:
 		wmId    = LOWORD(wParam);
 		wmEvent = HIWORD(wParam);

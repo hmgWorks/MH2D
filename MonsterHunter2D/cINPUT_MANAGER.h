@@ -19,10 +19,15 @@ public:
 	POINT getMousePos(){ return mouse_position_; }
 	void setMousePos(LPARAM mousePos);
 
+	//void setChar(WPARAM wparam);
+	
+	//WCHAR* buf_;
 private:
 	BOOL key_code_[256];
 	BOOL key_down_once_[256];
 	POINT mouse_position_;
 	BOOL mouse_down_;	
+
+	int len_;
 };
 
