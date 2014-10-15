@@ -5,31 +5,46 @@
 
 cGRID::cGRID()
 {	
+	//맵설정 게임 실행이랑은 상관업음
 	map_key_ = '0';
+	/*
+		맵의 데이터 인덱스
+		파일이름을 담은 백터의 인덱스
+	*/
 	map_data_index_ = 0;
 	
-	//data
+	/*
+		던전별로 데이터 파일이 있다.
+		map_files_ 에서 파일을 모두 담고 있다.
+		이미지도 같은 방식
+	*/
 	map_world_file_names_ = {
-			{ "Game Data/map_world_1.txt" }
+			{ "Game Data/map_world_0.txt" }
 	};
 	map_jungle_file_names_ = {
+			{ "Game Data/map_jungle_0.txt" },
 			{ "Game Data/map_jungle_1.txt" },
 			{ "Game Data/map_jungle_2.txt" },
 			{ "Game Data/map_jungle_3.txt" },
 			{ "Game Data/map_jungle_4.txt" },
 			{ "Game Data/map_jungle_5.txt" },
+			{ "Game Data/map_jungle_6.txt" },
+			{ "Game Data/map_jungle_7.txt" }
 	};
 	
 	map_files_.push_back(map_world_file_names_);
 	map_files_.push_back(map_jungle_file_names_);
 
-	//img
+	//img file
 	bg_imgs_world_= {
 			{ L"Image/world_background_1.bmp" },
 			{ L"Image/world_floor_1.bmp" }		
 	};
 	
 	bg_img_maps_.push_back(bg_imgs_world_);
+
+	tl = 0;
+	tt = 0;
 }
 
 cGRID::~cGRID()
@@ -37,46 +52,65 @@ cGRID::~cGRID()
 	
 }
 
+//월드에서 던전 던전에서 월드로 변경 할 때 호출해서 초기화 해준다.
 void cGRID::initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name)
 {
+	//0번째 파일이 캐릭터의 초기 위치가 있다.
 	map_data_index_ = 0;
+	
+	//던전을 구별해준다
 	map_name_ = map_name;
-
+	
+	//던전 변경시 한번 호출 하므로 컨테이너 초기화를 여기서
 	if (!current_map_.empty())
 		current_map_.clear();
-
-	cMAIN_GAME::getInstance()->resource_->loadMapData(map_files_[map_name_], current_map_);
-	current_map_data_ = current_map_[map_data_index_];
 
 	//tile map
 	if (!obj_grid_.empty())
 		obj_grid_.clear();
+	
+
+	//데이터 파일 로드해서 컨테이너에
+	cMAIN_GAME::getInstance()->resource_->loadMapData(map_files_[map_name_], current_map_);
+	current_map_data_ = current_map_[map_data_index_];
 
 	std::vector<std::list<std::shared_ptr<cGAME_OBJECT>>> obj_row(current_map_data_.count_x);
 	for (int i = 0; i < current_map_data_.count_y; i++)
 	{
 		obj_grid_.push_back(obj_row);
 	}
-
 	//카메라와 오브젝트의 한게 제한을 줌
-	limits_grid_ = { 0, 0, current_map_data_.width*current_map_data_.count_x,
-		current_map_data_.height* current_map_data_.count_y };
+	limits_grid_ = { 0, 0, current_map_data_.width * current_map_data_.count_x,
+		current_map_data_.height * current_map_data_.count_y };
+
+	//플레이어 셀위치 초기화
+	player->setCellPos({ -1, 0 });
 
 	if (player != nullptr)
 		for (int x = 0; x < current_map_data_.count_x; x++)
 			for (int y = 0; y < current_map_data_.count_y; y++)
 			{
-		if (current_map_data_.data_grid[y][x] == 'c')
-		{
-			player->setPos({ x* current_map_data_.width, y * current_map_data_.height });
-			player->setCellPos({ x, y });
-			obj_grid_[y][x].push_back(player);
-			player->setLimits(limits_grid_);
-		}
+				if (current_map_data_.data_grid[y][x] == 'c')
+				{
+					player->setPos({ x* current_map_data_.width, y * current_map_data_.height });
+					player->setCellPos({ x, y });
+					obj_grid_[y][x].push_back(player);
+					player->setLimits(limits_grid_);
+				}
 			}
+
+	//그리드 만들떼 test code
+	if (player->getCellPos().x == -1)
+	{
+		player->setPos({ 3* current_map_data_.width, 3 * current_map_data_.height });
+		player->setCellPos({ 3, 3 });
+		obj_grid_[3][3].push_back(player);
+		player->setLimits(limits_grid_);
+	}
 
 	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
 	
+	//이미지 아직
 	if (map_name_ == 0)
 	{
 		cMAIN_GAME::getInstance()->resource_->loadImage(world_background_1_, bg_img_maps_[map_name_][current_map_data_.background_img]);
@@ -84,6 +118,7 @@ void cGRID::initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name)
 	}
 }
 
+//맵이동을 할 때 호출
 void cGRID::setMap(std::shared_ptr<cGAME_OBJECT>& player)
 {
 	current_map_data_ = current_map_[map_data_index_];
@@ -113,12 +148,15 @@ void cGRID::setMap(std::shared_ptr<cGAME_OBJECT>& player)
 void cGRID::update(double delta)
 {
 	
-	insertMapObj();
 	
+	//맵 재작 관련 코드
+	
+	//insertMapObj();
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
 	{		
 		cMAIN_GAME::getInstance()->resource_->saveMapData(map_files_[map_name_][map_data_index_], 
 			current_map_data_);		
+		current_map_[map_data_index_] = current_map_data_;
 	}		
 	/*for (int i = 0; i < current_map_data_.count_y; i++)
 	{
@@ -131,6 +169,12 @@ void cGRID::update(double delta)
 				}
 		}
 	}*/
+	if (cMAIN_GAME::getInstance()->input_->isMouseDown())
+	{
+		tl = cMAIN_GAME::getInstance()->input_->getMousePos().x;
+		tt = cMAIN_GAME::getInstance()->input_->getMousePos().y;
+	}
+
 }
 
 void cGRID::render()
@@ -155,7 +199,8 @@ void cGRID::render()
 			if (current_map_data_.data_grid[y][x] == 'l'
 				|| current_map_data_.data_grid[y][x] == 't'
 				|| current_map_data_.data_grid[y][x] == 'r'
-				|| current_map_data_.data_grid[y][x] == 'b')
+				|| current_map_data_.data_grid[y][x] == 'b'
+				|| current_map_data_.data_grid[y][x] == 'c')
 			{
 				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 0, 255));
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
@@ -205,6 +250,12 @@ void cGRID::render()
 					x->render();
 		}
 	}	
+	
+	// test code
+	WCHAR test_ch[100];
+	wsprintf(test_ch, L"%d, %d", tl, tt);
+	cMAIN_GAME::getInstance()->renderer_->rectangel(tl, tt, tl + 100, tt + 200);
+	cMAIN_GAME::getInstance()->renderer_->textout(0, 70, test_ch);
 }
 
 void cGRID::checkCollision(std::shared_ptr<cGAME_OBJECT>& obj, cSCENE_MAIN* scene)
@@ -295,6 +346,8 @@ void cGRID::insertMapObj()
 	//못가는곳
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('X'))
 		map_key_ = 'x';
+	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('C'))
+		map_key_ = 'c';
 	
 	if (cMAIN_GAME::getInstance()->input_->isMouseDown())
 	{

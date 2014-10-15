@@ -53,4 +53,5 @@ private:
 	std::vector<WCHAR*> bg_imgs_jungle_;
 	std::vector<std::vector<WCHAR*>> bg_img_maps_;
 		
+	int tl, tt;
 };

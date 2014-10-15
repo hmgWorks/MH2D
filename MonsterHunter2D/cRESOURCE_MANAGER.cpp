@@ -39,6 +39,8 @@ void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
 				{
 					char ch;
 					ifile >> ch;
+					if (ifile.eof())
+						ch = '0';
 					data_row.push_back(ch);
 				}
 				data_.data_grid.push_back(data_row);
