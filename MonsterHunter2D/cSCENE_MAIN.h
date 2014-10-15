@@ -6,9 +6,9 @@
 #include "cPLAYER_BASE.h"
 #include "cMONSTER_BASE.h"
 #include "cSELECT_MAP.h"
-//#include "cGRID.h"
+#include "cGRID.h"
 
-class cGRID;
+//class cGRID;
 
 class cSCENE_MAIN :
 	public iSCENE_BASE

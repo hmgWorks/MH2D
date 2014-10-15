@@ -4,10 +4,11 @@
 #include <algorithm>
 
 cGRID::cGRID()
-{
+{	
 	map_key_ = '0';
 	map_data_index_ = 0;
 	
+	//data
 	map_world_file_names_ = {
 			{ "Game Data/map_world_1.txt" }
 	};
@@ -18,15 +19,11 @@ cGRID::cGRID()
 			{ "Game Data/map_jungle_4.txt" },
 			{ "Game Data/map_jungle_5.txt" },
 	};
-
-	/*loadMapData(map_world_file_names_, map_world_);
-	loadMapData(map_jungle_file_names_, map_jungle_);*/
-
-	/*maps_.push_back(map_world_);
-	maps_.push_back(map_jungle_);*/
+	
 	map_files_.push_back(map_world_file_names_);
 	map_files_.push_back(map_jungle_file_names_);
 
+	//img
 	bg_imgs_world_= {
 			{ L"Image/world_background_1.bmp" },
 			{ L"Image/world_floor_1.bmp" }		
@@ -44,7 +41,6 @@ void cGRID::initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name)
 {
 	map_name_ = map_name;
 	cMAIN_GAME::getInstance()->resource_->loadMapData(map_files_[map_name_], current_map_);
-	//current_map_ = maps_[map_name_];
 	current_map_data_ = current_map_[map_data_index_];
 
 	//tile map
@@ -78,48 +74,7 @@ void cGRID::initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name)
 
 	cMAIN_GAME::getInstance()->resource_->loadImage(world_background_1_, bg_img_maps_[map_name_][current_map_data_.background_img]);
 	cMAIN_GAME::getInstance()->resource_->loadImage(world_floor_1_, bg_img_maps_[map_name_][current_map_data_.floor_img]);
-
 }
-//void cGRID::initMap(std::vector<std::vector<sMAP_DATA>>& data_map,
-//	std::shared_ptr<cGAME_OBJECT>& player, int map_name)
-//{
-//	map_name_ = map_name;
-//	maps_ = data_map;
-//	current_map_ = maps_[map_name_];
-//	current_map_data_ = current_map_[map_data_index_];
-//
-//	//tile map
-//	if (!obj_grid_.empty())
-//		obj_grid_.clear();
-//
-//	std::vector<std::list<std::shared_ptr<cGAME_OBJECT>>> obj_row(current_map_data_.count_x);
-//	for (int i = 0; i < current_map_data_.count_y; i++)
-//	{
-//		obj_grid_.push_back(obj_row);
-//	}
-//
-//	//카메라와 오브젝트의 한게 제한을 줌
-//	limits_grid_ = { 0, 0, current_map_data_.width*current_map_data_.count_x,
-//		current_map_data_.height* current_map_data_.count_y };
-//	
-//	if (player != nullptr)
-//		for (int x = 0; x < current_map_data_.count_x; x++)
-//			for (int y = 0; y < current_map_data_.count_y; y++)
-//			{
-//				if (current_map_data_.data_grid[y][x] == 'c')
-//				{
-//					player->setPos({ x* current_map_data_.width, y * current_map_data_.height });
-//					player->setCellPos({ x, y });
-//					obj_grid_[y][x].push_back(player);
-//					player->setLimits(limits_grid_);
-//				}				
-//			}
-//	
-//	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
-//
-//	cMAIN_GAME::getInstance()->resource_->loadImage(world_background_1_, bg_img_maps_[map_name_][current_map_data_.background_img]);
-//	cMAIN_GAME::getInstance()->resource_->loadImage(world_floor_1_, bg_img_maps_[map_name_][current_map_data_.floor_img]);
-//}
 
 void cGRID::setMap(std::shared_ptr<cGAME_OBJECT>& player)
 {
@@ -152,12 +107,11 @@ void cGRID::update(double delta)
 	
 	insertMapObj();
 	
-	/*if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
-	{
-		current_map_[map_data_index_] = current_map_data_;
-		maps_[map_name_] = current_map_;
-		cMAIN_GAME::getInstance()->resource_->setMapData(maps_);		
-	}*/
+	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
+	{		
+		cMAIN_GAME::getInstance()->resource_->saveMapData(map_files_[map_name_][map_data_index_], 
+			current_map_data_);		
+	}
 
 		
 	/*for (int i = 0; i < current_map_data_.count_y; i++)
