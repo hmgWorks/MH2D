@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 #include "cGRID.h"
-#include "hmg_DATA.h"
 
 class cRESOURCE_MANAGER
 {
@@ -27,31 +26,15 @@ public:
 		std::vector<sMAP_DATA>& map);
 	
 	void saveMapData(std::vector<std::string>& file_names,
-		std::vector<sMAP_DATA>& map);
-	
-	std::vector<std::vector<sMAP_DATA>>& getMapData();
-	void setMapData(std::vector<std::vector<sMAP_DATA>> map_data);
+		std::vector<sMAP_DATA>& map);	
 
 	//image
-	void loadImage(HBITMAP& hImg, int index);
 	void loadImage(HBITMAP& hImg, WCHAR* img_name);
 	
 	WCHAR hunter_name_[128];
+
 private:
 	HINSTANCE hInst_;
-	
-	std::vector<sMAP_DATA> map_world_;
-	std::vector<std::string> map_world_file_names_;
-	
-	std::vector<sMAP_DATA> map_jungle_;
-	std::vector<std::string> map_jungle_file_names_;
-	
-	std::vector<std::vector<sMAP_DATA>> maps_;
-
-	//bitmap
-	HBITMAP world_background_1_;
-	std::vector<LPCWSTR> imgFileList_;
-
 
 };
 

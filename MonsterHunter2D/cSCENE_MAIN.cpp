@@ -18,8 +18,8 @@ void cSCENE_MAIN::enter()
 {	
 	grid_ = std::make_shared<cGRID>();
 	player_ = std::make_shared<cPLAYER_BASE>();
-	grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(), player_, eMAP_NAME::world);
-	
+	//grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(), player_, eMAP_NAME::world);
+	grid_->initMap(player_, eMAP_NAME::world);
 	select_map_ = std::make_shared<cSELECT_MAP>();
 	/*
 		플래이어의 위치와 한계의 설정은 그리드에 종속 되어야 함.
@@ -50,7 +50,7 @@ void cSCENE_MAIN::update(double delta)
 		select_map_->update(delta, scene_state_);		
 		if (scene_state_ == eSCENE_STATE::DUNGEON)
 		{
-			grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(), player_, eMAP_NAME::map_jungle);
+			grid_->initMap(player_, eMAP_NAME::map_jungle);
 		}
 	}
 	else

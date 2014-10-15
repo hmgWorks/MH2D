@@ -99,6 +99,7 @@
     <ClInclude Include="cWEAPONS.h" />
     <ClInclude Include="hmg_DATA.h" />
     <ClInclude Include="iCOLLISION.h" />
+    <ClInclude Include="iMAP_BASE.h" />
     <ClInclude Include="iSCENE_BASE.h" />
     <ClInclude Include="iSTATE.h" />
     <ClInclude Include="iUI_BASE.h" />

@@ -9,39 +9,11 @@ cRESOURCE_MANAGER::cRESOURCE_MANAGER()
 }
 cRESOURCE_MANAGER::cRESOURCE_MANAGER(HINSTANCE hInst)
 {
-	hInst_ = hInst;
-	
-	map_world_file_names_ = {
-			{ "Game Data/map_world_1.txt" }			
-	};
-	map_jungle_file_names_ = {
-			{ "Game Data/map_jungle_1.txt" },
-			{ "Game Data/map_jungle_2.txt" },
-			{ "Game Data/map_jungle_3.txt" },
-			{ "Game Data/map_jungle_4.txt" },
-			{ "Game Data/map_jungle_5.txt" },
-	};
-
-	loadMapData(map_world_file_names_, map_world_);
-	loadMapData(map_jungle_file_names_, map_jungle_);
-	
-	maps_.push_back(map_world_);
-	maps_.push_back(map_jungle_);
-
-	imgFileList_ = {
-			{ L"Image/world_background_1.bmp" },
-			{ L"Image/world_floor_1.bmp" },
-			{ L"Image/intro_teile.bmp" },
-			{ L"Image/intro_button_play.bmp" },
-			{ L"Image/intro_button_continue.bmp" },
-			{ L"Image/intro_button_exit.bmp" }
-	};
+	hInst_ = hInst;	
 }
 cRESOURCE_MANAGER::~cRESOURCE_MANAGER()
 {
-	saveMapData(map_world_file_names_, maps_[0]);
-	saveMapData(map_jungle_file_names_, maps_[1]);
-	maps_.clear();
+	
 }
 
 void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
@@ -126,15 +98,6 @@ void cRESOURCE_MANAGER::saveMapData(std::vector<std::string>& file_names,
 		}
 		ofile.close();
 	}
-}
-
-std::vector<std::vector<sMAP_DATA>>& cRESOURCE_MANAGER::getMapData()
-{
-	return maps_;
-}
-void cRESOURCE_MANAGER::setMapData(std::vector<std::vector<sMAP_DATA>> map_data)
-{
-	maps_ = map_data;
 }
 
 void cRESOURCE_MANAGER::createFile(std::string filename)
@@ -226,17 +189,7 @@ void cRESOURCE_MANAGER::readMapFile(std::string filename, cGRID& grid)
 	//ifile.close();
 }
 
-void cRESOURCE_MANAGER::loadImage(HBITMAP& hImg, int index)
-{
-	hImg = (HBITMAP)LoadImage(hInst_, imgFileList_[index], IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	/*
-			hMyBackBit = (HBITMAP)LoadImage(
-			hInst,
-			L"Image/back.bmp",
-			IMAGE_BITMAP, 0, 0,
-			LR_LOADFROMFILE);
-	*/
-}
+
 void cRESOURCE_MANAGER::loadImage(HBITMAP& hImg, WCHAR* img_name)
 {
 	hImg = (HBITMAP)LoadImage(hInst_, img_name, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
