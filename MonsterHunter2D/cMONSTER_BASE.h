@@ -23,7 +23,7 @@ public:
 
 	void moveLeft(int speed = 1);
 	void moveRight(int speed = 1);
-	void moveUp(int speed = 1);
+	void moveUp(int	 speed = 1);
 	void moveDown(int speed = 1);
 	
 	int getMoveNum(){ return move_num_; }

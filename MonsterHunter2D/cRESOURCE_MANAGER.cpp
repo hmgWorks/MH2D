@@ -3,10 +3,7 @@
 #include <io.h>
 #include <stdlib.h>
 
-cRESOURCE_MANAGER::cRESOURCE_MANAGER()
-{
 
-}
 cRESOURCE_MANAGER::cRESOURCE_MANAGER(HINSTANCE hInst)
 {
 	hInst_ = hInst;	
@@ -42,13 +39,11 @@ void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
 				{
 					char ch;
 					ifile >> ch;
-					//ch = '0';
 					data_row.push_back(ch);
 				}
 				data_.data_grid.push_back(data_row);
 				data_row.clear();
 			}
-			//data_.data_grid[1][1] = 'c';
 			map.push_back(data_);
 		}
 		ifile.close();
@@ -83,51 +78,6 @@ void cRESOURCE_MANAGER::saveMapData(std::string file_name, sMAP_DATA data)
 	ofile.close();
 }
 
-//void cRESOURCE_MANAGER::saveMapData(std::vector<std::string>& file_names,
-//	std::vector<sMAP_DATA>& map)
-//{
-//	for (int i = 0; i < file_names.size(); i++)
-//	{
-//		std::ofstream ofile(file_names[i]);
-//		{
-//			//sMAP_DATA data_;
-//			sMAP_DATA data_ = map[i];
-//			/*for (auto data_ : map)
-//			{*/
-//			ofile << data_.width << " "
-//				<< data_.height << " "
-//				<< data_.count_x << " "
-//				<< data_.count_y << " " << std::endl
-//				<< data_.potal_L_filename << std::endl
-//				<< data_.potal_T_filename << std::endl
-//				<< data_.potal_R_filename << std::endl
-//				<< data_.potal_B_filename << std::endl
-//				<< data_.background_img << std::endl
-//				<< data_.background_img2 << std::endl
-//				<< data_.floor_img << std::endl;
-//		
-//				for (auto col : data_.data_grid)
-//				{
-//					for (auto row : col)
-//					{
-//						ofile << row <<" ";
-//					}
-//					ofile << std::endl;
-//				}
-//			//}
-//			/*for (int y = 0; y < data_.count_y; y++)
-//			{
-//				for (int x = 0; x < data_.count_x; x++)
-//				{
-//					ofile << data_.data_grid[y][x] << " ";
-//				}
-//				ofile << std::endl;
-//			}*/
-//		}
-//		ofile.close();
-//	}
-//}
-
 void cRESOURCE_MANAGER::createFile(std::string filename)
 {
 
@@ -144,79 +94,6 @@ void cRESOURCE_MANAGER::createPlayerFile(std::string filename)
 		}ofile.close();
 	}
 }
-
-//void cRESOURCE_MANAGER::saveMapFile(std::string filename, cGRID& grid)
-//{
-//	/*std::ofstream ofile;
-//	ofile.open(filename);
-//	{
-//		ofile
-//			<< grid.getWidth()
-//			<< grid.getHeight()
-//			<< grid.getCountX()
-//			<< grid.getCountY() << std::endl
-//			<< grid.file_name_ << std::endl
-//			<< grid.potal_left_file_name_ << std::endl
-//			<< grid.potal_top_file_name_ << std::endl
-//			<< grid.potal_right_file_name_ << std::endl
-//			<< grid.potal_bottom_file_name_ << std::endl
-//			<< grid.floor_img_file_ << std::endl
-//			<< grid.background_img_file_ << std::endl
-//			<< grid.background_img2_file_ << std::endl;
-//		for (int x = 0; x < grid.getCountX(); x++)
-//		{
-//			for (int y = 0; y < grid.getCountY(); y++)
-//			{
-//				ofile.put(grid.getGridMap()[x][y]);
-//			}
-//			ofile << std::endl;
-//		}
-//	}
-//	ofile.close();*/
-//}
-//
-//void cRESOURCE_MANAGER::readMapFile(std::string filename, cGRID& grid)
-//{
-//	//std::ifstream ifile;
-//	//ifile.open(filename);
-//	//{
-//	//	sMAP_DATA data_;
-//	//	ifile >> data_.width
-//	//		>> data_.height
-//	//		>> data_.count_x
-//	//		>> data_.count_y
-//	//		//>> data_.filename
-//	//		>> data_.potal_L_filename
-//	//		>> data_.potal_T_filename
-//	//		>> data_.potal_R_filename
-//	//		>> data_.potal_B_filename
-//	//		>> data_.floor_img
-//	//		>> data_.background_img
-//	//		>> data_.background_img2;
-//	//	map_data1_.push_back(data_);
-//
-//	//	if (ifile.fail())
-//	//	{
-//	//		for (int x = 0; x < grid.getCountX(); x++)
-//	//			for (int y = 0; y < grid.getCountY(); y++)
-//	//			{
-//	//				grid.getGridMap()[x][y] = 0;
-//	//			}
-//	//	}
-//	//	else
-//	//	{
-//	//		for (int x = 0; x < grid.getCountX(); x++)
-//	//		{
-//	//			for (int y = 0; y < grid.getCountY(); y++)
-//	//			{
-//	//				ifile.get(grid.getGridMap()[x][y]);
-//	//			}
-//	//		}
-//	//	}
-//	//}
-//	//ifile.close();
-//}
-
 
 void cRESOURCE_MANAGER::loadImage(HBITMAP& hImg, WCHAR* img_name)
 {

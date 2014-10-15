@@ -18,17 +18,6 @@ struct sMAP_DATA
 	std::vector<std::vector<char>> data_grid;
 };
 
-
-enum eMAP_DATA
-{
-	world_start, world_left, world_top,
-	world_right, world_bottom
-};
-enum eMAP_NAME
-{
-	world = 0,
-	map_jungle
-};
 enum eSCENE_STATE
 {
 	WORLD = 0, 
@@ -37,13 +26,8 @@ enum eSCENE_STATE
 	END 
 };
 
-enum eIMG_LIST
+enum eMAP_NAME
 {
-	WORLD_BACKGROUND_1,
-	WORLD_FLOOR_1,
-	INTRO_TITLE,
-	INTRO_PLAY,
-	INTRO_CONTINUE,
-	INTRO_EXIT
+	world = 0,
+	map_jungle
 };
-
