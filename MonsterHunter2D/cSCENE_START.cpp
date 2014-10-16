@@ -20,6 +20,7 @@ cSCENE_START::~cSCENE_START()
 void cSCENE_START::enter()
 {
 	cMAIN_GAME::getInstance()->resource_->loadImage(start_bg_, L"Image/set_name.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(start_create_, L"Image/set_name_select.bmp");
 	cMAIN_GAME::getInstance()->resource_->loadImage(start_button1_, L"Image/start_button1.bmp");
 	cMAIN_GAME::getInstance()->resource_->loadImage(start_button2_, L"Image/start_button2.bmp");
 	cMAIN_GAME::getInstance()->resource_->loadImage(start_popup_, L"Image/start_popup.bmp");
@@ -105,8 +106,9 @@ void cSCENE_START::render()
 		break;	
 	}
 
-	/*if (popup_window_)
-		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(300, 290, start_popup_);*/
+	if (popup_window_)
+		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(400, 250, start_create_);
+	//	cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(300, 290, start_popup_);
 	//cMAIN_GAME::getInstance()->renderer_->textout(25, 70, cMAIN_GAME::getInstance()->input_->buf_);
 	cMAIN_GAME::getInstance()->renderer_->textout(25, 50, ch);
 	cMAIN_GAME::getInstance()->renderer_->textout(25, 25, L"scene: start");	

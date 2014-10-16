@@ -185,7 +185,7 @@ void cGRID::render()
 		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0 - cMAIN_GAME::getInstance()->camera_->getPos().x, 
 			0 - 10 - cMAIN_GAME::getInstance()->camera_->getPos().y, world_floor_1_, RGB(255, 0, 255));
 		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(0 - cMAIN_GAME::getInstance()->camera_->getPos().x, 
-			0 - 470 - cMAIN_GAME::getInstance()->camera_->getPos().y, world_background_1_, RGB(255, 0, 255));
+			0 - 460 - cMAIN_GAME::getInstance()->camera_->getPos().y, world_background_1_, RGB(255, 0, 255));
 	}
 		
 	int l, t, r, b;
@@ -227,7 +227,7 @@ void cGRID::render()
 
 			else
 			{
-				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
+				//cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
 			}
 			if (!obj_grid_[y][x].empty())
 			{
@@ -252,9 +252,9 @@ void cGRID::render()
 	}	
 	
 	// test code
-	WCHAR test_ch[100];
+	WCHAR test_ch[100];	
 	wsprintf(test_ch, L"%d, %d", tl, tt);
-	cMAIN_GAME::getInstance()->renderer_->rectangel(tl, tt, tl + 100, tt + 200);
+	//cMAIN_GAME::getInstance()->renderer_->rectangel(tl, tt, tl + 100, tt + 200);
 	cMAIN_GAME::getInstance()->renderer_->textout(0, 70, test_ch);
 }
 
@@ -324,6 +324,8 @@ void cGRID::setTileMap(std::shared_ptr<cGAME_OBJECT>& object)
 
 	object->setCellPos({ x, y });
 	obj_grid_[y][x].push_back(object);
+
+	
 }
 
 void cGRID::insertMapObj()

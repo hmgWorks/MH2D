@@ -47,6 +47,7 @@ private:
 	int map_name_;
 
 	//background img
+	std::vector<HBITMAP> list_of_bg_imgs_;
 	HBITMAP world_background_1_;
 	HBITMAP world_floor_1_;
 	std::vector<WCHAR*> bg_imgs_world_;

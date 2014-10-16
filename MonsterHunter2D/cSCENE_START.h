@@ -38,6 +38,7 @@ private:
 	RECT draw_window_;
 
 	HBITMAP start_bg_;
+	HBITMAP start_create_;
 	HBITMAP start_button1_;
 	HBITMAP start_button2_;
 	HBITMAP start_popup_;
