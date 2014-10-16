@@ -18,7 +18,6 @@ void cSCENE_MAIN::enter()
 {	
 	grid_ = std::make_shared<cGRID>();
 	player_ = std::make_shared<cPLAYER_BASE>();
-	//grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(), player_, eMAP_NAME::world);
 	grid_->initMap(player_, eMAP_NAME::world);
 	select_map_ = std::make_shared<cSELECT_MAP>();
 	/*
@@ -27,10 +26,6 @@ void cSCENE_MAIN::enter()
 		카메라는 플래이어에 종속돼
 	*/
 
-	/*grid_->initPlayer1(player_);	
-	player_->setLimits(grid_->getGridLimits());	
-	cMAIN_GAME::getInstance()->camera_->setLimit(grid_->getGridLimits());	
-	cMAIN_GAME::getInstance()->camera_->setTarget(player_);*/
 	cMAIN_GAME::getInstance()->camera_->setTarget(player_);
 }
 

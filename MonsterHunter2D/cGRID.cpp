@@ -35,14 +35,9 @@ cGRID::cGRID()
 	map_files_.push_back(map_world_file_names_);
 	map_files_.push_back(map_jungle_file_names_);
 
-	//img file
-	bg_imgs_world_= {
-			{ L"Image/world_background_1.bmp" },
-			{ L"Image/world_floor_1.bmp" }		
-	};
 	
-	bg_img_maps_.push_back(bg_imgs_world_);
-
+	
+	//마우스 포지션 나중에 지우거나
 	tl = 0;
 	tt = 0;
 }
@@ -109,20 +104,15 @@ void cGRID::initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name)
 	}
 
 	cMAIN_GAME::getInstance()->camera_->setLimit(limits_grid_);
-	
-	//이미지 아직
-	/*if (map_name_ == 0)
-	{*/
-		if (current_map_data_.background_img != "noimg")
+		
+	if (current_map_data_.background_img != "noimg")
 		cMAIN_GAME::getInstance()->resource_->loadImage(img_bg1_, current_map_data_.background_img);
 		
-		cMAIN_GAME::getInstance()->resource_->loadImage(img_floor_, current_map_data_.floor_img);
+	if (current_map_data_.background_img2 != "noimg")
+		cMAIN_GAME::getInstance()->resource_->loadImage(img_bg2_, current_map_data_.background_img2);		
 		
-		if (current_map_data_.background_img2 != "noimg")
-			cMAIN_GAME::getInstance()->resource_->loadImage(img_bg2_, current_map_data_.background_img2);
-		/*cMAIN_GAME::getInstance()->resource_->loadImage(world_background_1_, bg_img_maps_[map_name_][current_map_data_.background_img]);
-		cMAIN_GAME::getInstance()->resource_->loadImage(world_floor_1_, bg_img_maps_[map_name_][current_map_data_.floor_img]);*/
-	//}
+	if (current_map_data_.floor_img != "noimg")
+		cMAIN_GAME::getInstance()->resource_->loadImage(img_floor_, current_map_data_.floor_img);
 }
 
 //맵이동을 할 때 호출
@@ -154,10 +144,11 @@ void cGRID::setMap(std::shared_ptr<cGAME_OBJECT>& player)
 	if (current_map_data_.background_img != "noimg")
 		cMAIN_GAME::getInstance()->resource_->loadImage(img_bg1_, current_map_data_.background_img);
 
-	cMAIN_GAME::getInstance()->resource_->loadImage(img_floor_, current_map_data_.floor_img);
-
 	if (current_map_data_.background_img2 != "noimg")
 		cMAIN_GAME::getInstance()->resource_->loadImage(img_bg2_, current_map_data_.background_img2);
+
+	if (current_map_data_.floor_img != "noimg")
+		cMAIN_GAME::getInstance()->resource_->loadImage(img_floor_, current_map_data_.floor_img);	
 }
 
 void cGRID::update(double delta)
@@ -194,24 +185,18 @@ void cGRID::update(double delta)
 
 void cGRID::render()
 {	
-	//test code
-	/*if (map_name_ == 0)
-	{*/
-		/*cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(current_map_data_.background_img_pos_x - cMAIN_GAME::getInstance()->camera_->getPos().x, 
-			current_map_data_.background_img_pos_y - cMAIN_GAME::getInstance()->camera_->getPos().y, world_floor_1_, RGB(255, 0, 255));
-		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(current_map_data_.floor_img_pos_x - cMAIN_GAME::getInstance()->camera_->getPos().x, 
-			current_map_data_.floor_img_pos_y - cMAIN_GAME::getInstance()->camera_->getPos().y, world_background_1_, RGB(255, 0, 255));*/
-		if (current_map_data_.background_img2 != "noimg")
-			cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(current_map_data_.background_img2_pos_x - cMAIN_GAME::getInstance()->camera_->getPos().x * 0.3,
-			current_map_data_.background_img2_pos_y - cMAIN_GAME::getInstance()->camera_->getPos().y, img_bg2_, RGB(255, 0, 255));
+	//bg 는 렌더 순서를 잘 해야함
+	if (current_map_data_.background_img2 != "noimg")
+		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(current_map_data_.background_img2_pos_x - cMAIN_GAME::getInstance()->camera_->getPos().x * 0.3,
+		current_map_data_.background_img2_pos_y - cMAIN_GAME::getInstance()->camera_->getPos().y, img_bg2_, RGB(255, 0, 255));
 		
+	if (current_map_data_.floor_img != "noimg")
 		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(current_map_data_.floor_img_pos_x - cMAIN_GAME::getInstance()->camera_->getPos().x,
-			current_map_data_.floor_img_pos_y - cMAIN_GAME::getInstance()->camera_->getPos().y, img_floor_, RGB(255, 0, 255));
+		current_map_data_.floor_img_pos_y - cMAIN_GAME::getInstance()->camera_->getPos().y, img_floor_, RGB(255, 0, 255));
 
-		if (current_map_data_.background_img != "noimg")
+	if (current_map_data_.background_img != "noimg")
 		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(current_map_data_.background_img_pos_x - cMAIN_GAME::getInstance()->camera_->getPos().x,
-			current_map_data_.background_img_pos_y - cMAIN_GAME::getInstance()->camera_->getPos().y, img_bg1_, RGB(255, 0, 255));
-	//}
+		current_map_data_.background_img_pos_y - cMAIN_GAME::getInstance()->camera_->getPos().y, img_bg1_, RGB(255, 0, 255));
 		
 	int l, t, r, b;
 	for (int x = 0; x < current_map_data_.count_x; x++)
