@@ -36,7 +36,7 @@ private:
 	std::vector<std::string> map_jungle_file_names_;
 	std::vector<std::vector<std::string>> map_files_;
 
-	//cGRID 다시
+	//cGRID 의 정보
 	sMAP_DATA current_map_data_;
 	std::vector<sMAP_DATA> current_map_;
 	
@@ -47,9 +47,14 @@ private:
 	int map_name_;
 
 	//background img
-	std::vector<HBITMAP> list_of_bg_imgs_;
 	HBITMAP world_background_1_;
 	HBITMAP world_floor_1_;
+	
+	HBITMAP img_bg1_;
+	HBITMAP img_bg2_;
+	HBITMAP img_floor_;
+	std::vector<HBITMAP> list_of_bg_imgs_;
+	
 	std::vector<WCHAR*> bg_imgs_world_;
 	std::vector<WCHAR*> bg_imgs_jungle_;
 	std::vector<std::vector<WCHAR*>> bg_img_maps_;

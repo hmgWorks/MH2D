@@ -24,8 +24,8 @@ public:
 	void saveMapData(std::string file_name, sMAP_DATA data);
 
 	//image
-	void loadImage(HBITMAP& hImg, WCHAR* img_name);
-	
+	//void loadImage(HBITMAP& hImg, const WCHAR* img_name);
+	void loadImage(HBITMAP& hImg, std::string img_name);
 
 private:
 	HINSTANCE hInst_;

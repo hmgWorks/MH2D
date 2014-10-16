@@ -19,11 +19,11 @@ cSCENE_START::~cSCENE_START()
 
 void cSCENE_START::enter()
 {
-	cMAIN_GAME::getInstance()->resource_->loadImage(start_bg_, L"Image/set_name.bmp");
-	cMAIN_GAME::getInstance()->resource_->loadImage(start_create_, L"Image/set_name_select.bmp");
-	cMAIN_GAME::getInstance()->resource_->loadImage(start_button1_, L"Image/start_button1.bmp");
-	cMAIN_GAME::getInstance()->resource_->loadImage(start_button2_, L"Image/start_button2.bmp");
-	cMAIN_GAME::getInstance()->resource_->loadImage(start_popup_, L"Image/start_popup.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(start_bg_, "Image/set_name.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(start_create_, "Image/set_name_select.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(start_button1_, "Image/start_button1.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(start_button2_, "Image/start_button2.bmp");
+	cMAIN_GAME::getInstance()->resource_->loadImage(start_popup_, "Image/start_popup.bmp");
 	//edit_ = ::CreateWindow(L"edit", NULL, WS_CHILD | /*WS_VISIBLE |*/ WS_BORDER | ES_CENTER,
 	//	375, 395, 200, 25, cMAIN_GAME::getInstance()->hWnd_, (HMENU)ID_EIDT, cMAIN_GAME::getInstance()->hInst_, NULL);
 

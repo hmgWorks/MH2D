@@ -12,9 +12,15 @@ struct sMAP_DATA
 	int potal_T_filename;
 	int potal_R_filename;
 	int potal_B_filename;
-	int background_img;
-	int background_img2;
-	int floor_img;
+	std::string background_img;
+	std::string background_img2;
+	std::string floor_img;
+	int background_img_pos_x;
+	int background_img_pos_y;
+	int background_img2_pos_x;
+	int background_img2_pos_y;
+	int floor_img_pos_x;
+	int floor_img_pos_y;
 	std::vector<std::vector<char>> data_grid;
 };
 
