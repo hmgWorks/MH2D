@@ -216,7 +216,9 @@ void cGRID::render()
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
 				cMAIN_GAME::getInstance()->renderer_->deleteBrush();
 			}
-			else if (current_map_data_.data_grid[y][x] == 'e')
+			else if (current_map_data_.data_grid[y][x] == 'e'
+				|| current_map_data_.data_grid[y][x] == '1'
+				|| current_map_data_.data_grid[y][x] == '2')
 			{
 				cMAIN_GAME::getInstance()->renderer_->selectBrush(RGB(0, 255, 0));
 				cMAIN_GAME::getInstance()->renderer_->rectangel(l, t, r, b);
@@ -342,6 +344,10 @@ void cGRID::insertMapObj()
 {
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('0'))
 		map_key_ = '0';
+	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('1'))
+		map_key_ = '1';
+	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('2'))
+		map_key_ = '2';
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('L'))
 		map_key_ = 'l';
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('T'))

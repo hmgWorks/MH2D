@@ -1,0 +1,6 @@
+cSCENE_MAIN에서 마을과 던전을 관리 하게 됀다.
+cGRID의 current_map_data를 캐릭터 이동시에 변경(바꿔치기)
+
+
+던전 클래스를 따로 만들걸...cGRID가 너무 복잡
+(변경)

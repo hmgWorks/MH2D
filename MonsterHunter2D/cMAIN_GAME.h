@@ -11,6 +11,7 @@
 #include "cINPUT_MANAGER.h"
 #include "cRESOURCE_MANAGER.h"
 #include "cRENDERER.h"
+#include "cMONSTER_FACTORY.h"
 
 //매니져 스마트 포인터
 using unique_input = std::unique_ptr<cINPUT_MANAGER>;
@@ -46,6 +47,7 @@ public:
 	unique_resource	resource_;
 	unique_camera camera_;
 	unique_render	renderer_;
+	std::unique_ptr<cMONSTER_FACTORY> mon_factory_;
 
 private:
 	shared_scene current_scene_;

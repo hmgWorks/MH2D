@@ -4,17 +4,22 @@
 cMAIN_GAME::cMAIN_GAME()
 	:screen_width_(1024), screen_height_(768)
 {
-	input_ = unique_input(new cINPUT_MANAGER);
-	resource_ = unique_resource(new cRESOURCE_MANAGER(hInst_));
-	camera_ = unique_camera(new cCAMERA);
-	//renderer_ = unique_render(new Renderer);
-	renderer_ = unique_render(new cRENDERER);
+	/*
+		input_ = unique_input(new cINPUT_MANAGER);
+		스마트 포인터 사용시 객체를 생성하는 방법중 하나이나 
+		make_..를 사용하는것이 더 보기 좋으므로 교체함
+	*/
+	input_ = std::make_unique<cINPUT_MANAGER>();
+	resource_ = std::make_unique<cRESOURCE_MANAGER>(hInst_);
+	camera_ = std::make_unique<cCAMERA>();
+	renderer_ = std::make_unique<cRENDERER>();
+	mon_factory_ = std::make_unique<cMONSTER_FACTORY>();
 	current_scene_ = nullptr;
 
-	scene_map_.insert({ SCENE_ID::INTRO, shared_scene(new cSCENE_INTRO) });
-	scene_map_.insert({ SCENE_ID::START, shared_scene(new cSCENE_START) });
+	scene_map_.insert({ SCENE_ID::INTRO, std::make_shared<cSCENE_INTRO>() });
+	scene_map_.insert({ SCENE_ID::START, std::make_shared<cSCENE_START>() });
 	//scene_map_.insert({ SCENE_ID::TUTO, shared_scene(new cSCENE_TUTO) });
-	scene_map_.insert({ SCENE_ID::MAIN, shared_scene(new cSCENE_MAIN) });
+	scene_map_.insert({ SCENE_ID::MAIN, std::make_shared<cSCENE_MAIN>() });
 	 
 }
 cMAIN_GAME::~cMAIN_GAME()

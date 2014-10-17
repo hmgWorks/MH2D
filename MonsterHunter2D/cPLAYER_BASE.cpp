@@ -14,6 +14,11 @@ cPLAYER_BASE::cPLAYER_BASE()
 	attack_damage_ = 10 + unique_weapon_->getAttackDamage();
 	defense_ = 30;
 	move_speed_ = 5;
+
+	monsters_.push_back(eMONSTER_LIST::DOS_PANGGO);
+	monsters_.push_back(eMONSTER_LIST::PANGGO);
+	
+	list_of_monster_.insert({ eMAP_NAME::map_jungle, monsters_ });
 }
 cPLAYER_BASE::~cPLAYER_BASE()
 {

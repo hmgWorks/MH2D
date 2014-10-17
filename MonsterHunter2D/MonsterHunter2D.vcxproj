@@ -74,7 +74,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="NPC.txt" />
     <Text Include="ReadMe.txt" />
+    <Text Include="몹 생성.txt" />
+    <Text Include="맵 이동.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cCAMERA.h" />
@@ -83,6 +86,7 @@
     <ClInclude Include="cINPUT_MANAGER.h" />
     <ClInclude Include="cMAIN_GAME.h" />
     <ClInclude Include="cMONSTER_BASE.h" />
+    <ClInclude Include="cMONSTER_FACTORY.h" />
     <ClInclude Include="cMY_PLAYER.h" />
     <ClInclude Include="cPANGGO.h" />
     <ClInclude Include="cPLAYER_BASE.h" />
@@ -115,6 +119,7 @@
     <ClCompile Include="cINPUT_MANAGER.cpp" />
     <ClCompile Include="cMAIN_GAME.cpp" />
     <ClCompile Include="cMONSTER_BASE.cpp" />
+    <ClCompile Include="cMONSTER_FACTORY.cpp" />
     <ClCompile Include="cMY_PLAYER.cpp" />
     <ClCompile Include="cPANGGO.cpp" />
     <ClCompile Include="cPLAYER_BASE.cpp" />

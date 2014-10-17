@@ -19,6 +19,7 @@ public:
 
 	//그리드 다시	
 	void initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name);
+	void initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name, std::vector<std::shared_ptr<cGAME_OBJECT>>);
 	void setMap(std::shared_ptr<cGAME_OBJECT>& obj);
 	void checkCollision(std::shared_ptr<cGAME_OBJECT>& obj, cSCENE_MAIN* scene);
 

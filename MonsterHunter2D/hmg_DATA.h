@@ -37,3 +37,11 @@ enum eMAP_NAME
 	world = 0,
 	map_jungle
 };
+
+enum eMONSTER_LIST
+{
+	DOS_PANGGO = 0,
+	PANGGO,
+	DOS_RANPOS,
+	RANPOS
+};
