@@ -30,7 +30,7 @@ cPANGGO::cPANGGO(POINT pos, RECT limit)
 	move_destance_ = 300;
 	old_pos_.x = pos_x_;
 	old_pos_.y = pos_y_;
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 	move_num_ = rand() % 4;
 	temp_num_ = 0;
 }

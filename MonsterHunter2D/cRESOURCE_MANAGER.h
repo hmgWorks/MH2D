@@ -15,7 +15,7 @@ public:
 	void saveFile(std::string filename);
 	void readFile(std::string filename);
 
-	void createPlayerFile(std::string filename);
+	//void createPalyerFile(std::string filename);
 
 	//grid 관련 다시
 	void loadMapData(std::vector<std::string>& file_names, 

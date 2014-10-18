@@ -18,7 +18,7 @@ public:
 	//collision	
 	virtual void checkCollision(cGAME_OBJECT* enemy);
 	//void procCollision(){};
-
+	
 	//mode
 	void changeMode();
 
@@ -31,6 +31,11 @@ public:
 	void attackS();
 	void attackD();
 	
+	void setQust(std::unordered_map<int, std::vector<int>> list_of_monster)
+	{
+		list_of_monster_ = list_of_monster;
+	}
+	void getQust();
 private:
 	RECT collision_;
 	BOOL collision_on;
@@ -48,6 +53,6 @@ private:
 	std::vector<int> monsters_;
 	std::unordered_map<int, std::vector<int>> list_of_monster_;
 	
-
+	
 };
 

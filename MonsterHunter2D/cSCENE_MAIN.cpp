@@ -46,7 +46,7 @@ void cSCENE_MAIN::update(double delta)
 		select_map_->update(delta, scene_state_);		
 		if (scene_state_ == eSCENE_STATE::DUNGEON)
 		{
-			grid_->initMap(player_, eMAP_NAME::map_jungle, v_monsters_);
+			grid_->initMap(player_, eMAP_NAME::map_jungle/*, v_monsters_*/);
 		}
 	}
 	else

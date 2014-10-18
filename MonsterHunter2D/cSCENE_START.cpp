@@ -122,5 +122,5 @@ void cSCENE_START::exit()
 
 void cSCENE_START::createPlayer()
 {
-	cMAIN_GAME::getInstance()->resource_->createPlayerFile(path_ + player_name_+".txt");
+	//cMAIN_GAME::getInstance()->resource_->createPlayerFile(path_ + player_name_+".txt");
 }

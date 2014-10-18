@@ -157,7 +157,7 @@ void cGRID::update(double delta)
 	
 	//맵 재작 관련 코드
 	
-	//insertMapObj();
+	insertMapObj();
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('O'))
 	{		
 		cMAIN_GAME::getInstance()->resource_->saveMapData(map_files_[map_name_][map_data_index_], 
@@ -183,11 +183,12 @@ void cGRID::update(double delta)
 
 }
 
+
 void cGRID::render()
 {	
 	//bg 는 렌더 순서를 잘 해야함
 	if (current_map_data_.background_img2 != "noimg")
-		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(current_map_data_.background_img2_pos_x - cMAIN_GAME::getInstance()->camera_->getPos().x * 0.3,
+		cMAIN_GAME::getInstance()->renderer_->drawBitmapBack(current_map_data_.background_img2_pos_x - static_cast<int>(cMAIN_GAME::getInstance()->camera_->getPos().x * 0.3),
 		current_map_data_.background_img2_pos_y - cMAIN_GAME::getInstance()->camera_->getPos().y, img_bg2_, RGB(255, 0, 255));
 		
 	if (current_map_data_.floor_img != "noimg")
@@ -360,12 +361,13 @@ void cGRID::insertMapObj()
 		map_key_ = 'e';
 	//던전입구
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('D'))
-		map_key_ = 'd';
+		map_key_ = '<';
 	//못가는곳
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('X'))
 		map_key_ = 'x';
 	if (cMAIN_GAME::getInstance()->input_->getDownKey_once('C'))
 		map_key_ = 'c';
+	
 	
 	if (cMAIN_GAME::getInstance()->input_->isMouseDown())
 	{
