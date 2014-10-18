@@ -9,9 +9,8 @@ cSELECT_MAP::cSELECT_MAP()
 
 cSELECT_MAP::~cSELECT_MAP()
 {
+
 }
-
-
 
 void cSELECT_MAP::update(double delta, int& scene_state)
 {

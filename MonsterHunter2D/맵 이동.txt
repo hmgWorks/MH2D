@@ -1,0 +1,12 @@
+cSCENE_MAIN에서 마을과 던전을 관리 하게 됀다.
+cGRID의 current_map_data를 캐릭터 이동시에 변경(바꿔치기)
+
+
+던전 클래스를 따로 만들걸...cGRID가 너무 복잡
+(변경)
+
+변경 했으면 하는것
+1. cSCENE_MAIN안에 그리드의 속성을 데이터가 아닌 클래스(객체로)변경 하고 싶다.
+	예) cSCENE_MAIN으로 씬전환이 돼면 (마을)-> (던전선택)-> (던전)-> (던전 결과)-> (마을)
+	구현방법
+	cSCENE_MAIN에서 cGRID(base class)는 

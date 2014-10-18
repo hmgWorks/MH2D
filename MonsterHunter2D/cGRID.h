@@ -3,7 +3,7 @@
 #include <memory>
 #include "cGAME_OBJECT.h"
 #include "hmg_DATA.h"
-//#include "cSCENE_MAIN.h"
+
 class cSCENE_MAIN;
 class cGRID
 {
@@ -15,14 +15,11 @@ public:
 	void render();
 
 	void setTileMap(std::shared_ptr<cGAME_OBJECT>& object);
-
 	void insertMapObj();
 
-	//그리드 다시
-	//void initMap(std::vector<std::vector<sMAP_DATA>>& data_map,
-	//	std::shared_ptr<cGAME_OBJECT>& player, int map_name);
+	//그리드 다시	
 	void initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name);
-
+	void initMap(std::shared_ptr<cGAME_OBJECT>& player, int map_name, std::vector<std::shared_ptr<cGAME_OBJECT>>);
 	void setMap(std::shared_ptr<cGAME_OBJECT>& obj);
 	void checkCollision(std::shared_ptr<cGAME_OBJECT>& obj, cSCENE_MAIN* scene);
 
@@ -59,5 +56,5 @@ private:
 	std::vector<WCHAR*> bg_imgs_jungle_;
 	std::vector<std::vector<WCHAR*>> bg_img_maps_;
 		
-	int tl, tt;
+	int tl, tt;	
 };

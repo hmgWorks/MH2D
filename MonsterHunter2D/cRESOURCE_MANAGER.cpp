@@ -16,7 +16,7 @@ cRESOURCE_MANAGER::~cRESOURCE_MANAGER()
 void cRESOURCE_MANAGER::loadMapData(std::vector<std::string>& file_names,
 	std::vector<sMAP_DATA>& map)
 {
-	for (int i = 0; i < file_names.size(); i++)
+	for (size_t i = 0; i < file_names.size(); i++)
 	{
 		std::ifstream ifile(file_names[i]);
 		{
@@ -97,17 +97,17 @@ void cRESOURCE_MANAGER::createFile(std::string filename)
 
 }
 
-void cRESOURCE_MANAGER::createPlayerFile(std::string filename)
-{
-	//파일이 존재하면 0을 리턴
-	if (access(filename.data(), 0) != 0)
-	{
-		std::ofstream ofile(filename);
-		{
-
-		}ofile.close();
-	}
-}
+//void cRESOURCE_MANAGER::createPlayerFile(std::string filename)
+//{
+//	//파일이 존재하면 0을 리턴
+//	if (access(filename.data(), 0) != 0)
+//	{
+//		std::ofstream ofile(filename);
+//		{
+//
+//		}ofile.close();
+//	}
+//}
 
 void cRESOURCE_MANAGER::loadImage(HBITMAP& hImg, std::string img_name)
 {

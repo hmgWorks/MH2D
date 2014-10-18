@@ -8,8 +8,6 @@
 #include "cSELECT_MAP.h"
 #include "cGRID.h"
 
-//class cGRID;
-
 class cSCENE_MAIN :
 	public iSCENE_BASE
 {

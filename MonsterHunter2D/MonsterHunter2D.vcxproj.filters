@@ -37,9 +37,21 @@
     <Filter Include="소스 파일\MAIN GAME\GAME OBJECT\monster\state">
       <UniqueIdentifier>{b90a89a8-9978-4381-8c79-d2825dfcbee3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\구상">
+      <UniqueIdentifier>{b936c21c-e7e7-41f9-a2ea-3306c53a7939}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="몹 생성.txt">
+      <Filter>소스 파일\구상</Filter>
+    </Text>
+    <Text Include="맵 이동.txt">
+      <Filter>소스 파일\구상</Filter>
+    </Text>
+    <Text Include="NPC.txt">
+      <Filter>소스 파일\구상</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -132,6 +144,9 @@
     <ClInclude Include="iMAP_BASE.h">
       <Filter>소스 파일\INTERFACE</Filter>
     </ClInclude>
+    <ClInclude Include="cMONSTER_FACTORY.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -195,6 +210,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="cSELECT_MAP.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cMONSTER_FACTORY.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,6 +7,7 @@ cSCENE_MAIN::cSCENE_MAIN()
 {	
 	grid_ = nullptr;
 	player_ = nullptr;	
+	select_map_ = nullptr;
 	scene_state_ = eSCENE_STATE::WORLD;	
 }
 cSCENE_MAIN::~cSCENE_MAIN()
@@ -18,7 +19,6 @@ void cSCENE_MAIN::enter()
 {	
 	grid_ = std::make_shared<cGRID>();
 	player_ = std::make_shared<cPLAYER_BASE>();
-	//grid_->initMap(cMAIN_GAME::getInstance()->resource_->getMapData(), player_, eMAP_NAME::world);
 	grid_->initMap(player_, eMAP_NAME::world);
 	select_map_ = std::make_shared<cSELECT_MAP>();
 	/*
@@ -27,10 +27,6 @@ void cSCENE_MAIN::enter()
 		카메라는 플래이어에 종속돼
 	*/
 
-	/*grid_->initPlayer1(player_);	
-	player_->setLimits(grid_->getGridLimits());	
-	cMAIN_GAME::getInstance()->camera_->setLimit(grid_->getGridLimits());	
-	cMAIN_GAME::getInstance()->camera_->setTarget(player_);*/
 	cMAIN_GAME::getInstance()->camera_->setTarget(player_);
 }
 
@@ -50,7 +46,7 @@ void cSCENE_MAIN::update(double delta)
 		select_map_->update(delta, scene_state_);		
 		if (scene_state_ == eSCENE_STATE::DUNGEON)
 		{
-			grid_->initMap(player_, eMAP_NAME::map_jungle);
+			grid_->initMap(player_, eMAP_NAME::map_jungle/*, v_monsters_*/);
 		}
 	}
 	else

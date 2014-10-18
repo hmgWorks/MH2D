@@ -9,4 +9,5 @@ cMY_PLAYER::cMY_PLAYER()
 
 cMY_PLAYER::~cMY_PLAYER()
 {
+
 }

@@ -2,7 +2,7 @@
 #include "cGAME_OBJECT.h"
 #include "cWEAPONS.h"
 #include <memory>
-
+#include <unordered_map>
 enum class MODE { IDLE, ATTACT };
 
 class cPLAYER_BASE :
@@ -18,7 +18,7 @@ public:
 	//collision	
 	virtual void checkCollision(cGAME_OBJECT* enemy);
 	//void procCollision(){};
-
+	
 	//mode
 	void changeMode();
 
@@ -31,6 +31,11 @@ public:
 	void attackS();
 	void attackD();
 	
+	void setQust(std::unordered_map<int, std::vector<int>> list_of_monster)
+	{
+		list_of_monster_ = list_of_monster;
+	}
+	void getQust();
 private:
 	RECT collision_;
 	BOOL collision_on;
@@ -43,5 +48,11 @@ private:
 	int attack_damage_;//공격력 추가
 	int defense_;//방어력 추가
 	int move_speed_;//이속 추가	
+
+	//퀘스트
+	std::vector<int> monsters_;
+	std::unordered_map<int, std::vector<int>> list_of_monster_;
+	
+	
 };
 
